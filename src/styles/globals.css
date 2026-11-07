@@ -66,7 +66,10 @@ a:hover { color: var(--ink); }
 }
 .skip:focus { top: 0.6rem; }
 
-.wrap { width: min(72rem, calc(100% - 2rem)); margin: 0 auto; }
+.wrap {
+  width: min(88rem, calc(100% - clamp(2rem, 3.5vw, 3rem)));
+  margin-inline: auto;
+}
 
 .top { position: relative; z-index: 4; padding: 1rem 0 0.3rem; }
 
@@ -191,18 +194,53 @@ main { padding: 1.1rem 0 2.4rem; }
 
 .lede { font-size: 1.22rem; }
 
+/* Prose stays in a readable measure. Lists, checklists, and grids still use the wrap. */
+main > p,
+main > section:not(.hero):not(.page-head) > p,
+.article > p,
+.article > section:not(.page-head) > p,
+.note p,
+.shops p,
+.faq p,
+.split section p,
+.cup > p,
+.guide-list p,
+.thanks p,
+.footer .wrap > p {
+  max-width: 70ch;
+}
+.hero > p:not(.kicker),
+.page-head > .lede {
+  max-width: 90ch;
+}
+
 .hero, .page-head {
+  --doodle-rail: 7.75rem;
   position: relative;
   background: var(--sheet);
   border: 3px solid var(--ink);
   border-radius: 32px;
   box-shadow: 8px 8px 0 var(--ink);
-  padding: 1.35rem 8.5rem 0.5rem 1.4rem;
+  padding: 1.25rem calc(1.1rem + var(--doodle-rail)) 1rem 1.4rem;
   margin: 0.2rem 0 1.3rem;
 }
 .hero { transform: rotate(-0.35deg); }
-.page-head { transform: rotate(0.3deg); padding-bottom: 0.2rem; }
-.hero h1, .page-head h1 { max-width: 18ch; }
+.page-head { transform: rotate(0.3deg); }
+.hero h1, .page-head h1 { max-width: none; }
+.hero .doodles,
+.page-head .doodles {
+  position: absolute;
+  inset: 1rem 1rem 0.85rem auto;
+  width: var(--doodle-rail);
+}
+.hero .doodle-star,
+.page-head .doodle-star { top: 0; right: 0; width: 54px; }
+.hero .doodle-bubble,
+.page-head .doodle-bubble { top: 0.15rem; right: 3.55rem; width: 48px; }
+.hero .doodle-spark,
+.page-head .doodle-spark { top: 3.45rem; right: 3.15rem; width: 22px; }
+.hero .doodle-binder,
+.page-head .doodle-binder { top: auto; right: 0.15rem; bottom: 0; width: 66px; }
 
 .doodles { position: absolute; inset: 0; pointer-events: none; }
 .doodle { position: absolute; }
@@ -727,13 +765,36 @@ caption { text-align: left; padding: 0.75rem 0.65rem 0.25rem; font-weight: 700; 
   .gen-list li, .set-list li { grid-template-columns: 1fr; gap: 0.25rem; }
   .nav { justify-content: flex-start; }
   .doodle-binder, .doodle-bubble { display: none; }
-  .hero, .page-head { transform: none; padding-right: 4.2rem; }
+  .hero, .page-head {
+    transform: none;
+    padding: 1.15rem 4.5rem 0.9rem 1.15rem;
+  }
+  .hero .doodles,
+  .page-head .doodles { inset: 0; width: auto; }
+  .hero .doodle-star,
+  .page-head .doodle-star { top: 12px; right: 12px; width: 46px; }
+  .hero .doodle-spark,
+  .page-head .doodle-spark { top: 62px; right: 16px; width: 24px; }
   .hero h1, .page-head h1 { max-width: none; }
+}
+
+@media (max-width: 480px) {
+  .top-bar {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "brand"
+      "lang"
+      "nav";
+  }
+  .lang-switch { justify-self: start; }
 }
 
 @media (max-width: 520px) {
   .stats { grid-template-columns: 1fr; }
   .doodle-spark { display: none; }
+  .hero, .page-head { padding-right: 3.5rem; }
+  .hero .doodle-star,
+  .page-head .doodle-star { top: 10px; right: 10px; width: 40px; }
   .cup { transform: none; }
   .cup-list li {
     grid-template-columns: auto auto minmax(0, 1fr);
@@ -852,7 +913,6 @@ caption { text-align: left; padding: 0.75rem 0.65rem 0.25rem; font-weight: 700; 
 }
 .illust-cards a:hover { background: var(--butter); }
 .dex-list .count { color: var(--muted); font-weight: 700; }
-.article { max-width: 44rem; }
 .article h2, .set-timeline h2, .set-timeline h3 { scroll-margin-top: 1rem; }
 .toc {
   background: var(--sheet);
@@ -862,7 +922,11 @@ caption { text-align: left; padding: 0.75rem 0.65rem 0.25rem; font-weight: 700; 
   margin: 1rem 0 1.4rem;
 }
 .toc p { margin: 0; font-family: var(--font-display), Quicksand, sans-serif; font-weight: 700; }
-.toc ol { margin: 0.4rem 0 0; }
+.toc ol {
+  margin: 0.4rem 0 0;
+  column-width: 16rem;
+  column-gap: 1.4rem;
+}
 .diagram { margin: 1rem 0 1.4rem; }
 .diagram svg { width: min(100%, 40rem); height: auto; }
 .diagram figcaption { color: var(--muted); margin-top: 0.4rem; }
@@ -879,14 +943,21 @@ caption { text-align: left; padding: 0.75rem 0.65rem 0.25rem; font-weight: 700; 
   .set-timeline li { flex-direction: column; gap: 0.15rem; }
   .set-timeline li span { text-align: left; }
 }
-.guide-list { list-style: none; padding: 0; margin: 1rem 0; }
+.guide-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 0.8rem;
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
 .guide-list li {
   background: var(--sheet);
   border: 3px solid var(--ink);
   border-radius: 18px;
   box-shadow: 4px 4px 0 var(--ink);
   padding: 0.9rem 1rem;
-  margin: 0.8rem 0;
+  margin: 0;
 }
 .guide-list a { font-family: var(--font-display), Quicksand, sans-serif; font-weight: 700; }
 
@@ -1024,6 +1095,10 @@ caption { text-align: left; padding: 0.75rem 0.65rem 0.25rem; font-weight: 700; 
   body, .page-head, .banner, .hero {
     background: #fff !important;
     box-shadow: none !important;
+  }
+  .hero, .page-head {
+    padding: 0 !important;
+    transform: none !important;
   }
   .checklist li { break-inside: avoid; content-visibility: visible; }
   a { color: #000; }
