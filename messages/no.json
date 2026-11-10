@@ -59,7 +59,21 @@
     "themesDescription": "Lister for en Pokémon, en kunstner eller en type kort. En fylt stolpe er det jeg allerede har.",
     "cardsTitle": "Pokémon-kortliste",
     "illustratorsTitle": "Kortillustratører",
-    "illustratorTitle": "{name}, kortillustratør"
+    "illustratorTitle": "{name}, kortillustratør",
+    "setMetaTitle": "{name}: alle {total} Pokémon-kort + sjekkliste",
+    "setMetaTitleShort": "{name}: alle {total} Pokémon-kort",
+    "setMetaTitleTiny": "{name}: {total} Pokémon-kort",
+    "setMetaDescription": "Alle kort i Pokémon TCG-settet {name} ({series}, {year}): alle {total} kort i settrekkefølge med nummer og bilder, pluss en gratis utskrivbar sjekkliste.",
+    "setMetaDescriptionShort": "Pokémon TCG {name} ({series}, {year}): alle {total} kort og en gratis utskrivbar sjekkliste.",
+    "setMetaDescriptionTiny": "Pokémon {name} ({year}): alle {total} kort og en sjekkliste.",
+    "seriesMetaTitle": "Pokémon-serien {series}: kortlister for alle {count} sett",
+    "seriesMetaTitleOne": "Pokémon-serien {series}: kortlisten",
+    "seriesMetaTitleShort": "Pokémon {series}: lister for {count} sett",
+    "seriesMetaDescription": "Alle {count} sett i serien {series} i utgivelsesrekkefølge, hvert med en full kortliste og en gratis utskrivbar sjekkliste.",
+    "seriesMetaDescriptionOne": "Settet {series}, med en full kortliste og en gratis utskrivbar sjekkliste.",
+    "seriesMetaDescriptionShort": "{count} sett i serien {series}, hvert med kortliste og sjekkliste.",
+    "deltaReignMetaTitle": "Delta Reign-kortliste, dato og sjekkliste",
+    "deltaReignMetaDescription": "Det Pokémon har publisert om Mega Evolution—Delta Reign: datoene, og sjekklisten som blir tom til kortlisten er ekte."
   },
   "nav": {
     "primary": "Sider",
@@ -366,7 +380,22 @@
     "faq": "Spørsmål om dette kortet",
     "cost": "Kostnad",
     "damage": "Skade",
-    "alsoHeld": "Også i samlingen: {languages}."
+    "alsoHeld": "Også i samlingen: {languages}.",
+    "metaYear": " ({year})",
+    "metaLead": "{name} {fraction} fra {set}{year}",
+    "metaKind": "{lead}: {kind}",
+    "metaRarityType": "{rarity} {type}-kort",
+    "metaTypeOnly": "{type}-kort",
+    "metaRarityKind": "{rarity} {kind}-kort",
+    "metaPlain": "{kind}-kort",
+    "metaPokemon": "Pokémon",
+    "metaTrainer": "Trener",
+    "metaEnergy": "Energi",
+    "metaOther": "annet",
+    "metaIllustrated": "{base}, tegnet av {illustrator}",
+    "metaTail": "{base}. Korttekst, permer kortet hører hjemme i, og andre trykk.",
+    "printedAs": "Trykt som",
+    "imageAlt": "{name} {fraction} – Pokémon-kort fra {set}"
   },
   "cardSearch": {
     "kicker": "Kortliste",
@@ -463,5 +492,20 @@
     "openTheme": "Åpne permsiden",
     "openGeneration": "Åpne generasjonssiden",
     "footerNote": "Et kryss når kortet ligger i permen."
+  },
+  "guideNotes": {
+    "heading": "Fra guidene",
+    "setOrder": "[[Sett i rekkefølge|/guides/sets-in-order]] er slik jeg plasserer denne listen blant de andre.",
+    "organize": "[[Hvordan jeg ordner en perm|/guides/organize-binder]] er sidestørrelsen jeg bruker når kortene er sortert.",
+    "bulk": "En eske bulk å sortere? [[Hva jeg gjør med bulk|/guides/bulk-cards]] er gjennomgangen før et kort havner på denne listen.",
+    "read": "[[Hvordan jeg leser et kort|/guides/read-a-card]] viser hvor samlenummeret og settsymbolet sitter.",
+    "protect": "[[Hvordan jeg beskytter et kort|/guides/protect-cards]] er lomme, før et kort går inn i et fag.",
+    "fakes": "[[Hvordan jeg kjenner igjen en forfalskning|/guides/spot-fakes]] er sjekken når et kort ikke stemmer med bildet.",
+    "collecting": "[[Hvordan jeg samler i permer|/guides/collecting-binders]] er det lengre notatet om en settperm og en generasjonsperm.",
+    "pokedex": "[[En Pokédex-perm|/guides/pokedex-binder]] rommer ett kort av hver art, fra et hvilket som helst sett.",
+    "gen1": "[[Gen 1-sjekklisten|/guides/gen-1-checklist]] er de opprinnelige 151 artene, og det er ikke den samme listen som ett sett.",
+    "set151": "Leter du etter 2023-settet som heter [[151|/collections/set/sv3pt5]]? Det er en annen liste enn de opprinnelige 151 artene.",
+    "sv3pt5": "Denne siden er 2023-settet som heter 151. De opprinnelige 151 artene er [[gen 1-sjekklisten|/guides/gen-1-checklist]].",
+    "homeGive": "Når en perm er full, drar den videre. [[Å gi en perm videre|/guides/donating-cards]] er den delen av prosjektet."
   }
 }

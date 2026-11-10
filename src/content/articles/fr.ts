@@ -261,7 +261,7 @@ export function frenchArticles(): ArticleCopy[] {
           id: "the-151",
           heading: "Ce que veulent dire les 151",
           paragraphs: [
-            "Les 151 sont une tranche du Pokédex, pas un seul produit. La [[génération 1|/collections/generation/1]] liste chaque espèce de cette tranche, avec quelques-unes des séries où chacune apparaît. Cette page est la liste que j'utilise. Ce n'est pas le même objet que la série de Base, qui compte 102 cartes et comprend des Dresseurs et des Énergies. Les gens mélangent ces deux comptes. Je les garde à part pour que le classeur ait le bon nombre de poches.",
+            "Les 151 sont une tranche du Pokédex, pas un seul produit. La [[génération 1|/collections/generation/1]] liste chaque espèce de cette tranche, avec quelques-unes des séries où chacune apparaît. Cette page est la liste que j'utilise. Ce n'est pas le même objet que la série de Base, qui compte 102 cartes et comprend des Dresseurs et des Énergies. Les gens mélangent ces deux comptes. Je les garde à part pour que le classeur ait le bon nombre de poches. Le set de 2023 qui s'appelle [[151|/collections/set/sv3pt5]] est une autre liste.",
             "[[La note sur le classeur Pokédex|/guides/pokedex-binder]] est la même méthode pour les {species} espèces. Cette note-ci reste avec le premier livre, parce que les 151 d'origine sont le classeur dont on me parle le plus souvent. [[Le guide long|/guides/collecting-binders]] explique pourquoi il s'agit d'un classeur de génération et non d'un classeur de série. Les deux peuvent contenir un Pikachu. Ils ne comptent pas la même chose.",
           ],
         },

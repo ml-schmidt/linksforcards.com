@@ -59,7 +59,21 @@
     "themesDescription": "Listor för en Pokémon, en konstnär eller ett slags kort. En fylld stapel är det jag redan har.",
     "cardsTitle": "Pokémon-kortlista",
     "illustratorsTitle": "Kortillustratörer",
-    "illustratorTitle": "{name}, kortillustratör"
+    "illustratorTitle": "{name}, kortillustratör",
+    "setMetaTitle": "{name}: alla {total} Pokémon-kort + checklista",
+    "setMetaTitleShort": "{name}: alla {total} Pokémon-kort",
+    "setMetaTitleTiny": "{name}: {total} Pokémon-kort",
+    "setMetaDescription": "Alla kort i Pokémon TCG-setet {name} ({series}, {year}): alla {total} kort i setordning med nummer och bilder, plus en gratis utskrivbar checklista.",
+    "setMetaDescriptionShort": "Pokémon TCG {name} ({series}, {year}): alla {total} kort och en gratis utskrivbar checklista.",
+    "setMetaDescriptionTiny": "Pokémon {name} ({year}): alla {total} kort och en checklista.",
+    "seriesMetaTitle": "Pokémon-serien {series}: kortlistor för alla {count} set",
+    "seriesMetaTitleOne": "Pokémon-serien {series}: kortlistan",
+    "seriesMetaTitleShort": "Pokémon {series}: listor för {count} set",
+    "seriesMetaDescription": "Alla {count} set i serien {series} i utgivningsordning, vart och ett med en full kortlista och en gratis utskrivbar checklista.",
+    "seriesMetaDescriptionOne": "Setet {series}, med en full kortlista och en gratis utskrivbar checklista.",
+    "seriesMetaDescriptionShort": "{count} set i serien {series}, vart och ett med kortlista och checklista.",
+    "deltaReignMetaTitle": "Delta Reign-kortlista, datum och checklista",
+    "deltaReignMetaDescription": "Det Pokémon har publicerat om Mega Evolution—Delta Reign: datumen, och checklistan som förblir tom tills kortlistan är verklig."
   },
   "nav": {
     "primary": "Sidor",
@@ -366,7 +380,22 @@
     "faq": "Frågor om det här kortet",
     "cost": "Kostnad",
     "damage": "Skada",
-    "alsoHeld": "Också i samlingen: {languages}."
+    "alsoHeld": "Också i samlingen: {languages}.",
+    "metaYear": " ({year})",
+    "metaLead": "{name} {fraction} från {set}{year}",
+    "metaKind": "{lead}: {kind}",
+    "metaRarityType": "{rarity} {type}-kort",
+    "metaTypeOnly": "{type}-kort",
+    "metaRarityKind": "{rarity} {kind}-kort",
+    "metaPlain": "{kind}-kort",
+    "metaPokemon": "Pokémon",
+    "metaTrainer": "Tränare",
+    "metaEnergy": "Energi",
+    "metaOther": "övrigt",
+    "metaIllustrated": "{base}, tecknat av {illustrator}",
+    "metaTail": "{base}. Korttext, pärmar där kortet hör hemma, och andra tryck.",
+    "printedAs": "Tryckt som",
+    "imageAlt": "{name} {fraction} – Pokémon-kort från {set}"
   },
   "cardSearch": {
     "kicker": "Kortlista",
@@ -463,5 +492,20 @@
     "openTheme": "Öppna pärmsidan",
     "openGeneration": "Öppna generationssidan",
     "footerNote": "Ett kryss när kortet ligger i pärmen."
+  },
+  "guideNotes": {
+    "heading": "Från guiderna",
+    "setOrder": "[[Set i ordning|/guides/sets-in-order]] är hur jag placerar den här listan bland de andra.",
+    "organize": "[[Hur jag ordnar en pärm|/guides/organize-binder]] är sidstorleken jag använder när korten är sorterade.",
+    "bulk": "En låda bulk att sortera? [[Vad jag gör med bulk|/guides/bulk-cards]] är genomgången innan ett kort hamnar på den här listan.",
+    "read": "[[Hur jag läser ett kort|/guides/read-a-card]] visar var samlarnumret och setsymbolen sitter.",
+    "protect": "[[Hur jag skyddar ett kort|/guides/protect-cards]] är fickan, innan ett kort går in i ett fack.",
+    "fakes": "[[Hur jag känner igen en förfalskning|/guides/spot-fakes]] är kontrollen när ett kort inte stämmer med bilden.",
+    "collecting": "[[Hur jag samlar i pärmar|/guides/collecting-binders]] är den längre anteckningen om en setpärm och en generationspärm.",
+    "pokedex": "[[En Pokédex-pärm|/guides/pokedex-binder]] rymmer ett kort av varje art, från vilket set som helst.",
+    "gen1": "[[Gen 1-checklistan|/guides/gen-1-checklist]] är de ursprungliga 151 arterna, och det är inte samma lista som ett enda set.",
+    "set151": "Söker du 2023 års set som heter [[151|/collections/set/sv3pt5]]? Det är en annan lista än de ursprungliga 151 arterna.",
+    "sv3pt5": "Den här sidan är 2023 års set som heter 151. De ursprungliga 151 arterna är [[gen 1-checklistan|/guides/gen-1-checklist]].",
+    "homeGive": "När en pärm är full lämnar den. [[Att ge en pärm vidare|/guides/donating-cards]] är den delen av projektet."
   }
 }

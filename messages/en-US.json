@@ -59,7 +59,21 @@
     "themesDescription": "Checklists that follow a Pokémon, an artist, or a kind of card. A filled bar is what I already have.",
     "cardsTitle": "Pokémon card list",
     "illustratorsTitle": "Card illustrators",
-    "illustratorTitle": "{name}, card illustrator"
+    "illustratorTitle": "{name}, card illustrator",
+    "setMetaTitle": "{name} card list: all {total} Pokémon cards + checklist",
+    "setMetaTitleShort": "{name}: all {total} Pokémon cards",
+    "setMetaTitleTiny": "{name}: {total} Pokémon cards",
+    "setMetaDescription": "Every card in Pokémon TCG {name} ({series}, {year}): all {total} cards in set order with numbers and pictures, plus a free printable checklist.",
+    "setMetaDescriptionShort": "Every card in Pokémon TCG {name} ({series}, {year}): all {total} cards, plus a free printable checklist.",
+    "setMetaDescriptionTiny": "Pokémon {name} ({year}): all {total} cards and a printable checklist.",
+    "seriesMetaTitle": "Pokémon {series} series: card lists for all {count} sets",
+    "seriesMetaTitleOne": "Pokémon {series} series: the card list",
+    "seriesMetaTitleShort": "Pokémon {series}: card lists for {count} sets",
+    "seriesMetaDescription": "All {count} {series} sets in release order, each with a full card list and a free printable checklist.",
+    "seriesMetaDescriptionOne": "The {series} set, with a full card list and a free printable checklist.",
+    "seriesMetaDescriptionShort": "{count} {series} sets, each with a card list and a printable checklist.",
+    "deltaReignMetaTitle": "Delta Reign card list, release date & checklist",
+    "deltaReignMetaDescription": "What Pokémon has published about Mega Evolution—Delta Reign: the dates, and the checklist that stays empty until the card list is real."
   },
   "nav": {
     "primary": "Pages",
@@ -366,7 +380,22 @@
     "faq": "Questions about this card",
     "cost": "Cost",
     "damage": "Damage",
-    "alsoHeld": "Also in the collection: {languages}."
+    "alsoHeld": "Also in the collection: {languages}.",
+    "metaYear": " ({year})",
+    "metaLead": "{name} {fraction} from {set}{year}",
+    "metaKind": "{lead}: {kind}",
+    "metaRarityType": "{rarity} {type} card",
+    "metaTypeOnly": "{type} card",
+    "metaRarityKind": "{rarity} {kind} card",
+    "metaPlain": "{kind} card",
+    "metaPokemon": "Pokémon",
+    "metaTrainer": "Trainer",
+    "metaEnergy": "Energy",
+    "metaOther": "other",
+    "metaIllustrated": "{base}, illustrated by {illustrator}",
+    "metaTail": "{base}. Card text, binders it fits, and other printings.",
+    "printedAs": "Printed as",
+    "imageAlt": "{name} {fraction} – {set} Pokémon card"
   },
   "cardSearch": {
     "kicker": "Card list",
@@ -463,5 +492,20 @@
     "openTheme": "Open the binder page",
     "openGeneration": "Open the generation page",
     "footerNote": "Check a box when the card is in the binder."
+  },
+  "guideNotes": {
+    "heading": "From the guides",
+    "setOrder": "[[Sets in release order|/guides/sets-in-order]] is how I place this list among the others.",
+    "organize": "[[How I organize a binder|/guides/organize-binder]] is the page size I use once the cards are sorted.",
+    "bulk": "Sorting a box of bulk? [[What I do with bulk|/guides/bulk-cards]] is the pass I make before a card reaches this list.",
+    "read": "[[How I read a card|/guides/read-a-card]] is where the collector number and the set symbol sit.",
+    "protect": "[[How I protect a card|/guides/protect-cards]] is the sleeve, before a card goes into a pocket.",
+    "fakes": "[[How I spot a fake|/guides/spot-fakes]] is the check when a card does not match the picture.",
+    "collecting": "[[How I collect in binders|/guides/collecting-binders]] is the longer note on a set binder and a generation binder.",
+    "pokedex": "[[A Pokédex binder|/guides/pokedex-binder]] holds one card of each species, from any set.",
+    "gen1": "[[The Gen 1 checklist|/guides/gen-1-checklist]] is the original 151 species, which is not the same list as one set.",
+    "set151": "Looking for the 2023 set called [[151|/collections/set/sv3pt5]]? That is a different list from the original 151 species.",
+    "sv3pt5": "This page is the 2023 set called 151. The original 151 species are [[the Gen 1 checklist|/guides/gen-1-checklist]].",
+    "homeGive": "When a binder is full, it leaves. [[Giving a binder away|/guides/donating-cards]] is that part of the project."
   }
 }

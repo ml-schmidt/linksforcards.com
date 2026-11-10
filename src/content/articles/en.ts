@@ -306,7 +306,7 @@ const us: ArticleCopy[] = [
         id: "the-151",
         heading: "What the 151 means",
         paragraphs: [
-          "The 151 is a Pokédex range, not a single product. [[Generation 1|/collections/generation/1]] lists every species in that range, with a few of the sets each one appears in. That page is the checklist I use. It is not the same object as the Base set, which is 102 cards and includes trainers and energy. People mix those two counts. I keep them apart so the binder has the right number of slots.",
+          "The 151 is a Pokédex range, not a single product. [[Generation 1|/collections/generation/1]] lists every species in that range, with a few of the sets each one appears in. That page is the checklist I use. It is not the same object as the Base set, which is 102 cards and includes trainers and energy. People mix those two counts. I keep them apart so the binder has the right number of slots. Looking for the 2023 set called [[151|/collections/set/sv3pt5]]? That is a different list.",
           "[[The Pokédex binder note|/guides/pokedex-binder]] is the same method for all {species} species. This note stays with the first book, because the original 151 is the binder I am most often asked about. [[The long guide|/guides/collecting-binders]] explains why this is a generation binder and not a set binder.",
         ],
       },

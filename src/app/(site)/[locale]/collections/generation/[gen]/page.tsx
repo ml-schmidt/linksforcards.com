@@ -6,9 +6,9 @@ import { Checklist } from "@/components/site/checklist";
 import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
+import { GuideNotes } from "@/components/site/guide-notes";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
-import { getArticle } from "@/lib/articles";
 import { cardImageSrc, getSet, speciesName, speciesNamesAreTranslated } from "@/lib/catalog";
 import { fill, formatInt } from "@/lib/format";
 import { formatDexNumber, GENERATIONS, generationById } from "@/lib/generations";
@@ -150,14 +150,14 @@ export default async function GenerationPage({ params }: { params: Promise<{ loc
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}
       <Checklist rows={rows} labels={m.checklist} />
-      <RelatedLinks
-        label={m.nav.related}
-        links={[
-          {
-            href: localePath(locale, generation.id === 1 ? "/guides/gen-1-checklist" : "/guides/pokedex-binder"),
-            name: getArticle(locale, generation.id === 1 ? "gen-1-checklist" : "pokedex-binder")?.h1 ?? m.nav.guides,
-          },
-        ]}
+      <GuideNotes
+        locale={locale}
+        heading={m.guideNotes.heading}
+        notes={
+          generation.id === 1
+            ? [m.guideNotes.pokedex, m.guideNotes.gen1, m.guideNotes.set151]
+            : [m.guideNotes.pokedex]
+        }
       />
       <h2>{m.generationPage.other}</h2>
       <RelatedLinks

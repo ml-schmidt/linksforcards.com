@@ -13,13 +13,17 @@ export function CardPicture({
   alt,
   quality,
   eager = false,
+  priority = false,
   frame = false,
 }: {
   src: string | null;
   fallbackSrc?: string | null;
   alt: string;
   quality: ImageQuality;
+  /** Load immediately. Listing pages set this on the first row only. */
   eager?: boolean;
+  /** Browser hint for the single image that is the largest on screen. */
+  priority?: boolean;
   frame?: boolean;
 }) {
   const [seen, setSeen] = useState(src);
@@ -38,9 +42,9 @@ export function CardPicture({
       alt={alt}
       width={width}
       height={height}
-      loading={eager ? "eager" : "lazy"}
+      loading={eager || priority ? "eager" : "lazy"}
       decoding="async"
-      {...(eager ? { fetchPriority: "high" as const } : {})}
+      {...(priority ? { fetchPriority: "high" as const } : {})}
       onError={() => setAttempt((current) => current + 1)}
     />
   ) : (

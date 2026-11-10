@@ -3,6 +3,7 @@ import { getSet, getSetCards, getSets } from "../src/lib/catalog";
 import {
   buildCardView,
   cardFraction,
+  printedCardFraction,
   PRINTING_CAP,
   cardIsHeld,
   cardMetaDescription,
@@ -73,8 +74,12 @@ describe("card page copy", () => {
     const { view } = viewFor("base1", "4");
     expect(view.path).toBe("/cards/base1-4-charizard");
     expect(view.title).toBe("Charizard 4/102 · Base");
-    expect(view.description).toBe("Charizard 4/102 is a Rare Holo card in the Base set.");
-    expect(view.description.length).toBeLessThanOrEqual(155);
+    expect(view.description).toBe(
+      "Charizard 4/102 from Base (1999): Rare Holo Fire card, illustrated by Mitsuhiro Arita. Card text, binders it fits, and other printings.",
+    );
+    expect(view.description.length).toBeLessThanOrEqual(160);
+    expect(view.printedFraction).toBeNull();
+    expect(view.imageAlt).toBe("Charizard 4/102 – Base Pokémon card");
     expect(view.fraction).toBe("4/102");
     expect(view.status).toBe("need");
     expect(view.paragraphs.length).toBeGreaterThanOrEqual(4);
@@ -117,6 +122,10 @@ describe("card page copy", () => {
     const graph = JSON.stringify(cardPageGraph("us", view));
     expect(graph).toContain("BreadcrumbList");
     expect(graph).toContain("WebPage");
+    expect(graph).toContain("Image: TCGdex");
+    expect(graph).toContain("© Nintendo / Creatures / GAME FREAK");
+    expect(graph).toContain("primaryImageOfPage");
+    expect(graph).toContain("https://assets.tcgdex.net/");
     expect(graph).not.toContain("Product");
     expect(graph).not.toContain("Offer");
     expect(graph).not.toContain("FAQPage");
@@ -129,6 +138,13 @@ describe("card page copy", () => {
     expect(set && cardFraction(set, { n: "25" })).toBe("25/165");
     const needed = viewFor("sv3pt5", "25");
     expect(needed.view.paragraph).toContain("25/165");
+    expect(needed.view.printedFraction).toBe("025/165");
+    expect(needed.view.description).toContain("025/165");
+    expect(needed.view.description).toContain("2023");
+    expect(needed.view.title).toContain("25/165");
+    expect(needed.view.title).not.toContain("025/165");
+    expect(needed.view.facts.some((fact) => fact.label === "Printed as" && fact.value === "025/165")).toBe(true);
+    expect(needed.view.imageAlt).toContain("025/165");
     expect(needed.view.paragraph).toContain("Pikachu");
     expect(needed.view.paragraph).toContain("Naoyo Kimura");
     expect(needed.view.paragraph).toContain("The regulation mark is G.");
@@ -288,7 +304,7 @@ describe("card page copy", () => {
     expect(german.paragraph).toContain(`${dex.de?.[5]} (#006)`);
   });
 
-  it("keeps card descriptions within 155 characters", async () => {
+  it("keeps card descriptions within 160 characters", async () => {
     const suffix = " · LinksForCards";
     let over = 0;
     let total = 0;
@@ -305,11 +321,15 @@ describe("card page copy", () => {
           if (visible > 60) over += 1;
           if (visible > longest) longest = visible;
           const description = cardMetaDescription(messages, set, card, fraction);
-          if (description.length > 155) {
+          const shown = printedCardFraction(set, card) ?? fraction;
+          if (description.length > 160) {
             throw new Error(`${locale} ${set.id} ${card.n} description is ${description.length}: ${description}`);
           }
-          if (!description.includes(card.name) || !description.includes(fraction)) {
+          if (!description.includes(card.name) || !description.includes(shown)) {
             throw new Error(`${locale} ${set.id} ${card.n} description dropped the name or number: ${description}`);
+          }
+          if (/price|worth|\$|cardmarket|tcgplayer/i.test(description)) {
+            throw new Error(`${locale} ${set.id} ${card.n} description mentions a price: ${description}`);
           }
         }
       }
@@ -326,6 +346,17 @@ describe("card page copy", () => {
     }
     expect(lookup.artists["Mitsuhiro Arita"]).toBe(arita);
     expect(lookup.dex["6"]?.find((printing) => printing.s === "base1" && printing.n === "4")?.hp).toBe("120");
+  });
+
+  it("separates a concatenated colorless cost on Glaceon", () => {
+    const { view, card } = viewFor("bw9", "23");
+    expect(card.ab?.[0]?.x).toContain("ColorlessColorless");
+    expect(view.paragraph).toContain("2× Colorless");
+    expect(view.paragraph).not.toContain("ColorlessColorless");
+    expect(view.description).toContain("2013");
+    expect(view.description).toContain("5ban Graphics");
+    expect(view.description).toContain("Water");
+    expect(view.printedFraction).toBeNull();
   });
 });
 
@@ -349,7 +380,9 @@ describe("card page SEO for base1-4-charizard", () => {
     const held = pageFor("us", true);
     expect(us.view.title).toBe("Charizard 4/102 · Base");
     expect(us.meta.title).toBe(us.view.title);
-    expect(us.meta.description).toBe("Charizard 4/102 is a Rare Holo card in the Base set.");
+    expect(us.meta.description).toBe(
+      "Charizard 4/102 from Base (1999): Rare Holo Fire card, illustrated by Mitsuhiro Arita. Card text, binders it fits, and other printings.",
+    );
     expect(us.meta.description).toBe(us.view.description);
     expect(us.meta.robots).toBeUndefined();
     expect(us.meta.alternates?.canonical).toBe(absoluteUrl("/cards/base1-4-charizard"));

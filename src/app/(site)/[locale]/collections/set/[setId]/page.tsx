@@ -6,11 +6,12 @@ import { Checklist } from "@/components/site/checklist";
 import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
+import { GuideNotes } from "@/components/site/guide-notes";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
 import { themeCopy } from "@/content/theme-copy";
-import { getArticle } from "@/lib/articles";
 import { cardRowHref, formatHeldLanguages } from "@/lib/card-page";
+import { setSearchDescription, setSearchTitle } from "@/lib/collection-meta";
 import { numbersMatch } from "@/lib/cards";
 import { cardImageSrc, getSet, getSetCards, getSets, speciesName, type CardKind } from "@/lib/catalog";
 import { fill, formatDay, formatInt } from "@/lib/format";
@@ -47,18 +48,12 @@ export async function generateMetadata({
   const set = getSet(setId);
   const cards = set ? getSetCards(set.id) : null;
   if (!set || !cards) return {};
-  const snapshot = await loadPublic();
   return pageMetadata(
     locale,
     `/collections/set/${set.id}`,
-    fill(m.meta.setTitle, { name: set.name }),
-    fill(m.meta.setDescription, {
-      name: set.name,
-      series: set.series,
-      date: formatDay(set.releaseDate, locale),
-      collected: formatInt(snapshot.setCounts[set.id] ?? 0, locale),
-      total: formatInt(cards.length, locale),
-    }),
+    setSearchTitle(m, locale, set.name, cards.length),
+    setSearchDescription(m, locale, set, cards.length),
+    { fitTitle: true },
   );
 }
 
@@ -112,13 +107,7 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
     locale,
     path,
     name: title,
-    description: fill(m.meta.setDescription, {
-      name: set.name,
-      series: set.series,
-      date: formatDay(set.releaseDate, locale),
-      collected,
-      total: cards.length,
-    }),
+    description: setSearchDescription(m, locale, set, cards.length),
   }) as CollectionPage;
   Object.assign(page, { mainEntity: { "@id": String(list["@id"]) } });
   const graph = ldGraph([page, list, breadcrumbNode(crumbs)]);
@@ -178,13 +167,15 @@ export default async function SetPage({ params }: { params: Promise<{ locale: st
       {mark?.status === "given_away" ? <p className="banner">{m.checklist.markedGiven}</p> : null}
       {mark?.status === "completed" ? <p className="banner">{m.checklist.markedComplete}</p> : null}
       <Checklist rows={rows} labels={m.checklist} />
-      <RelatedLinks
-        label={m.nav.related}
-        links={[
-          {
-            href: localePath(locale, set.id === "base1" ? "/guides/gen-1-checklist" : "/guides/sets-in-order"),
-            name: getArticle(locale, set.id === "base1" ? "gen-1-checklist" : "sets-in-order")?.h1 ?? m.nav.guides,
-          },
+      <GuideNotes
+        locale={locale}
+        heading={m.guideNotes.heading}
+        notes={[
+          m.guideNotes.setOrder,
+          m.guideNotes.organize,
+          m.guideNotes.bulk,
+          ...(set.id === "sv3pt5" ? [m.guideNotes.sv3pt5] : []),
+          ...(set.id === "base1" ? [m.guideNotes.gen1] : []),
         ]}
       />
       {relatedSets.length > 0 ? (

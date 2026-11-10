@@ -59,7 +59,21 @@
     "themesDescription": "Listes pour un Pokémon, un artiste ou un type de carte. Une barre remplie, c'est ce que j'ai déjà.",
     "cardsTitle": "Liste des cartes Pokémon",
     "illustratorsTitle": "Illustrateurs de cartes",
-    "illustratorTitle": "{name}, illustrateur de cartes"
+    "illustratorTitle": "{name}, illustrateur de cartes",
+    "setMetaTitle": "{name} : liste des {total} cartes Pokémon + checklist",
+    "setMetaTitleShort": "{name} : les {total} cartes Pokémon",
+    "setMetaTitleTiny": "{name} : {total} cartes Pokémon",
+    "setMetaDescription": "Toutes les cartes du JCC Pokémon {name} ({series}, {year}) : les {total} cartes dans l'ordre du set, avec numéros et images, plus une checklist imprimable gratuite.",
+    "setMetaDescriptionShort": "JCC Pokémon {name} ({series}, {year}) : les {total} cartes, plus une checklist imprimable gratuite.",
+    "setMetaDescriptionTiny": "Pokémon {name} ({year}) : les {total} cartes et une checklist.",
+    "seriesMetaTitle": "Série Pokémon {series} : listes de cartes pour les {count} sets",
+    "seriesMetaTitleOne": "Série Pokémon {series} : la liste de cartes",
+    "seriesMetaTitleShort": "Pokémon {series} : listes pour {count} sets",
+    "seriesMetaDescription": "Les {count} sets {series} dans l'ordre de sortie, chacun avec une liste de cartes complète et une checklist imprimable gratuite.",
+    "seriesMetaDescriptionOne": "Le set {series}, avec une liste de cartes complète et une checklist imprimable gratuite.",
+    "seriesMetaDescriptionShort": "{count} sets {series}, chacun avec une liste et une checklist imprimable.",
+    "deltaReignMetaTitle": "Delta Reign : liste de cartes, date et checklist",
+    "deltaReignMetaDescription": "Ce que Pokémon a publié sur Mega Evolution—Delta Reign : les dates, et la checklist qui reste vide tant que la liste de cartes n'est pas réelle."
   },
   "nav": {
     "primary": "Pages",
@@ -366,7 +380,22 @@
     "faq": "Questions sur cette carte",
     "cost": "Coût",
     "damage": "Dégâts",
-    "alsoHeld": "Aussi dans la collection : {languages}."
+    "alsoHeld": "Aussi dans la collection : {languages}.",
+    "metaYear": " ({year})",
+    "metaLead": "{name} {fraction} du set {set}{year}",
+    "metaKind": "{lead} : {kind}",
+    "metaRarityType": "carte {type} {rarity}",
+    "metaTypeOnly": "carte {type}",
+    "metaRarityKind": "carte {kind} {rarity}",
+    "metaPlain": "carte {kind}",
+    "metaPokemon": "Pokémon",
+    "metaTrainer": "Dresseur",
+    "metaEnergy": "Énergie",
+    "metaOther": "autre",
+    "metaIllustrated": "{base}, illustrée par {illustrator}",
+    "metaTail": "{base}. Texte de la carte, classeurs où elle entre, et autres tirages.",
+    "printedAs": "Imprimé",
+    "imageAlt": "{name} {fraction} – carte Pokémon {set}"
   },
   "cardSearch": {
     "kicker": "Liste de cartes",
@@ -463,5 +492,20 @@
     "openTheme": "Ouvrir la page du classeur",
     "openGeneration": "Ouvrir la page de la génération",
     "footerNote": "Je coche quand la carte est dans le classeur."
+  },
+  "guideNotes": {
+    "heading": "Dans les guides",
+    "setOrder": "[[Les sets dans l'ordre|/guides/sets-in-order]] est la façon dont je place cette liste parmi les autres.",
+    "organize": "[[Comment je range un classeur|/guides/organize-binder]] est la taille de page que je prends une fois les cartes triées.",
+    "bulk": "Un carton de bulk à trier ? [[Ce que je fais du bulk|/guides/bulk-cards]] est le passage avant qu'une carte arrive sur cette liste.",
+    "read": "[[Comment je lis une carte|/guides/read-a-card]] montre où sont le numéro de collection et le symbole du set.",
+    "protect": "[[Comment je protège une carte|/guides/protect-cards]] est la pochette, avant qu'une carte entre dans un logement.",
+    "fakes": "[[Comment je repère une contrefaçon|/guides/spot-fakes]] est la vérification quand une carte ne correspond pas à l'image.",
+    "collecting": "[[Comment je collectionne en classeurs|/guides/collecting-binders]] est la note plus longue sur un classeur de set et un classeur de génération.",
+    "pokedex": "[[Un classeur Pokédex|/guides/pokedex-binder]] garde une carte de chaque espèce, depuis n'importe quel set.",
+    "gen1": "[[La liste génération 1|/guides/gen-1-checklist]] couvre les 151 espèces d'origine, et ce n'est pas la même liste qu'un seul set.",
+    "set151": "Le set de 2023 qui s'appelle [[151|/collections/set/sv3pt5]] est une autre liste que les 151 espèces d'origine.",
+    "sv3pt5": "Cette page est le set de 2023 appelé 151. Les 151 espèces d'origine sont [[la liste génération 1|/guides/gen-1-checklist]].",
+    "homeGive": "Quand un classeur est plein, il part. [[Donner un classeur|/guides/donating-cards]] est cette partie du projet."
   }
 }
