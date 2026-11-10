@@ -1,4 +1,5 @@
 import type { CatalogCard } from "@/lib/catalog";
+import { formatEnergyList, separateEnergyWords } from "@/lib/energy-text";
 import type { Messages } from "@/lib/i18n";
 
 export function CardCopy({ paragraphs }: { paragraphs: string[] }) {
@@ -32,7 +33,7 @@ export function CardGameplay({ m, card }: { m: Messages; card: CatalogCard }) {
               {ability.n}
             </h3>
             {ability.y ? <p className="move-meta">{ability.y}</p> : null}
-            {ability.x ? <p>{ability.x}</p> : null}
+            {ability.x ? <p>{separateEnergyWords(ability.x)}</p> : null}
           </article>
         ))}
         {attacks.map((attack) => (
@@ -51,18 +52,18 @@ export function CardGameplay({ m, card }: { m: Messages; card: CatalogCard }) {
                 {attack.d && attack.c?.length ? " · " : null}
                 {attack.c?.length ? (
                   <>
-                    <span>{m.cardPage.cost}</span> {attack.c.join(", ")}
+                    <span>{m.cardPage.cost}</span> {formatEnergyList(attack.c)}
                   </>
                 ) : null}
               </p>
             ) : null}
-            {attack.x ? <p>{attack.x}</p> : null}
+            {attack.x ? <p>{separateEnergyWords(attack.x)}</p> : null}
           </article>
         ))}
         {rules.map((rule) => (
           <article key={rule.slice(0, 80)} className="move">
             <h3>{m.cardPage.rules}</h3>
-            <p>{rule}</p>
+            <p>{separateEnergyWords(rule)}</p>
           </article>
         ))}
         {ancient ? (
@@ -70,7 +71,7 @@ export function CardGameplay({ m, card }: { m: Messages; card: CatalogCard }) {
             <h3>
               {m.cardPage.ancient}: {ancient.n}
             </h3>
-            <p>{ancient.x}</p>
+            <p>{separateEnergyWords(ancient.x)}</p>
           </article>
         ) : null}
         {flavor ? (

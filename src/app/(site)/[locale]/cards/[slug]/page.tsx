@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound, permanentRedirect } from "next/navigation";
 import { Breadcrumbs } from "@/components/site/breadcrumbs";
 import { CardCopy, CardFaq, CardGameplay } from "@/components/site/card-body";
+import { GuideNotes } from "@/components/site/guide-notes";
 import { BinderChips, NeighborLinks, PrintingGrid } from "@/components/site/card-links";
 import { CardPicture } from "@/components/site/card-picture";
 import { DoodleCluster } from "@/components/site/doodles";
@@ -16,7 +17,7 @@ import {
   resolveCardSlug,
   cardIsHeld,
 } from "@/lib/card-page";
-import { cardImageAlt, cardImageUrl } from "@/lib/card-images";
+import { cardImageUrl } from "@/lib/card-images";
 import { fill, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
 import { localePath } from "@/lib/routing";
@@ -55,7 +56,7 @@ export default async function CardPage({ params }: { params: Promise<{ locale: s
   const view = buildCardView(locale, m, resolved.set, resolved.card, status);
   const alsoHeld = otherLanguagesHeld(snapshot, resolved.set.id, resolved.card.n);
   const graph = cardPageGraph(locale, view);
-  const alt = cardImageAlt(m.checklist.cardAlt, resolved.card.name, resolved.set.name, resolved.card.n);
+  const alt = view.imageAlt;
   const high = cardImageUrl(resolved.set.id, resolved.card.n, "high");
   const low = cardImageUrl(resolved.set.id, resolved.card.n, "low");
   const neighbors = [view.prev, view.next].filter((link): link is NonNullable<typeof link> => Boolean(link));
@@ -75,7 +76,7 @@ export default async function CardPage({ params }: { params: Promise<{ locale: s
         ) : null}
       </section>
       <div className="card-layout">
-        <CardPicture src={high} fallbackSrc={low} alt={alt} quality="high" eager frame />
+        <CardPicture src={high} fallbackSrc={low} alt={alt} quality="high" eager priority frame />
         <CardCopy paragraphs={view.paragraphs} />
       </div>
       <h2>{m.cardPage.facts}</h2>
@@ -127,6 +128,11 @@ export default async function CardPage({ params }: { params: Promise<{ locale: s
         </>
       ) : null}
       <CardFaq m={m} faqs={view.faqs} />
+      <GuideNotes
+        locale={locale}
+        heading={m.guideNotes.heading}
+        notes={[m.guideNotes.read, m.guideNotes.protect, m.guideNotes.fakes]}
+      />
       <SiteLinks locale={locale} m={m} current={view.path} />
     </>
   );

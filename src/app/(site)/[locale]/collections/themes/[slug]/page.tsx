@@ -6,6 +6,7 @@ import { Checklist } from "@/components/site/checklist";
 import { DoodleCluster } from "@/components/site/doodles";
 import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
+import { GuideNotes } from "@/components/site/guide-notes";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
 import { themeCopy } from "@/content/theme-copy";
@@ -19,6 +20,7 @@ import type { Locale } from "@/lib/locales";
 import { breadcrumbNode, itemListNode, ldGraph, pageNode } from "@/lib/jsonld";
 import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
+import { clipOnWord } from "@/lib/snippets";
 import { absoluteUrl } from "@/lib/site";
 import { loadPublic, markFor } from "@/lib/stats";
 import {
@@ -53,6 +55,10 @@ function described(locale: Locale, theme: Theme, template: string): string {
   });
 }
 
+function themeSnippet(locale: Locale, theme: Theme, template: string): string {
+  return clipOnWord(described(locale, theme, template), 160);
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -63,9 +69,10 @@ export async function generateMetadata({
   const theme = getTheme(slug);
   const copy = theme ? themeCopy(locale, theme.slug) : null;
   if (!theme || !copy) return {};
-  return pageMetadata(locale, `/collections/themes/${theme.slug}`, copy.title, described(locale, theme, copy.description), {
+  return pageMetadata(locale, `/collections/themes/${theme.slug}`, copy.title, themeSnippet(locale, theme, copy.description), {
     locales: themeHreflangLocales(theme),
     index: themeIndexed(theme, locale),
+    fitTitle: true,
   });
 }
 
@@ -79,7 +86,7 @@ export default async function ThemePage({ params }: { params: Promise<{ locale: 
   const collected = themeCollected(theme, snapshot.held);
   const mark = markFor(snapshot, "theme", theme.slug);
   const path = `/collections/themes/${theme.slug}`;
-  const description = described(locale, theme, copy.description);
+  const description = themeSnippet(locale, theme, copy.description);
   const groups: { series: string; anchor: string; count: number }[] = [];
   const rows = resolveThemeCards(theme).map((item) => {
     const dex = item.card.dex?.find((number) => number >= 1 && number <= 1025);
@@ -184,6 +191,11 @@ export default async function ThemePage({ params }: { params: Promise<{ locale: 
         </nav>
       ) : null}
       <Checklist rows={rows} labels={m.checklist} />
+      <GuideNotes
+        locale={locale}
+        heading={m.guideNotes.heading}
+        notes={[m.guideNotes.collecting, m.guideNotes.organize]}
+      />
       {themeLinks.length > 0 ? (
         <>
           <h2>{m.themesPage.relatedThemes}</h2>

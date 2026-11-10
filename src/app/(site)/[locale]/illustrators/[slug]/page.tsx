@@ -55,6 +55,7 @@ export default async function IllustratorPage({ params }: { params: Promise<{ lo
   if (!artist) notFound();
   const snapshot = await loadPublic();
   const view = buildIllustratorView(locale, m, artist, loggedCount(artist, snapshot));
+  let imageSlot = 0;
 
   return (
     <>
@@ -85,16 +86,25 @@ export default async function IllustratorPage({ params }: { params: Promise<{ lo
             <a href={group.href}>{group.heading}</a>
           </h3>
           <ul className="illust-cards">
-            {group.cards.map((card) => (
-              <li key={card.href}>
-                <a href={card.href}>
-                  <span className="card-shot">
-                    <CardPicture src={card.image} alt={card.alt} quality="low" />
-                  </span>
-                  <span>{card.name}</span>
-                </a>
-              </li>
-            ))}
+            {group.cards.map((card) => {
+              const slot = card.image ? imageSlot++ : -1;
+              return (
+                <li key={card.href}>
+                  <a href={card.href}>
+                    <span className="card-shot">
+                      <CardPicture
+                        src={card.image}
+                        alt={card.alt}
+                        quality="low"
+                        eager={slot >= 0 && slot < 6}
+                        priority={slot === 0}
+                      />
+                    </span>
+                    <span>{card.name}</span>
+                  </a>
+                </li>
+              );
+            })}
           </ul>
         </section>
       ))}

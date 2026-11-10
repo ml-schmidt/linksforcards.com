@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
 import type { Graph } from "schema-dts";
+import { getSetCards, getSets, setsBySeries } from "../src/lib/catalog";
+import { seriesSearchDescription, seriesSearchTitle, setSearchDescription, setSearchTitle } from "../src/lib/collection-meta";
 import { getMessages } from "../src/lib/i18n";
 import { HREFLANG_TARGETS, LOCALES, SPECIES_INDEX_LOCALES } from "../src/lib/locales";
 import {
@@ -189,6 +191,50 @@ describe("json-ld", () => {
     expect(seen.has("Product")).toBe(false);
     expect(seen.has("AggregateRating")).toBe(false);
     expect(seen.has("Review")).toBe(false);
+  });
+});
+
+describe("set and series snippets", () => {
+  const haveCount = /I have |Ich habe |J'en ai |Tengo |Ne ho |Ik heb |Jag har |Jeg har |Minulla on |Mam /;
+
+  it("names the set, the card count, and a checklist without a have-count", () => {
+    const hidden = getSets().find((set) => set.id === "sm115");
+    const cards = hidden ? getSetCards(hidden.id) : null;
+    if (!hidden || !cards) throw new Error("missing hidden fates");
+    const messages = getMessages("us");
+    const title = setSearchTitle(messages, "us", hidden.name, cards.length);
+    const description = setSearchDescription(messages, "us", hidden, cards.length);
+    expect(title).toBe("Hidden Fates card list: all 69 Pokémon cards + checklist");
+    expect(description).toBe(
+      "Every card in Pokémon TCG Hidden Fates (Sun & Moon, 2019): all 69 cards in set order with numbers and pictures, plus a free printable checklist.",
+    );
+    expect(getMessages("de").meta.setTitle).toContain("Kartenliste");
+    const suffix = " · LinksForCards";
+    for (const locale of LOCALES) {
+      const m = getMessages(locale);
+      for (const set of getSets()) {
+        const total = getSetCards(set.id)?.length ?? set.count;
+        const setTitle = setSearchTitle(m, locale, set.name, total);
+        const setDescription = setSearchDescription(m, locale, set, total);
+        const visible = setTitle.length + suffix.length <= 60 ? setTitle.length + suffix.length : setTitle.length;
+        expect(visible, `${locale} ${set.id} ${setTitle}`).toBeLessThanOrEqual(60);
+        expect(setDescription.length, `${locale} ${set.id}`).toBeLessThanOrEqual(160);
+        expect(setDescription, `${locale} ${set.id}`).not.toMatch(haveCount);
+        expect(setTitle, `${locale} ${set.id}`).toMatch(/Pokémon/);
+        expect(setDescription, `${locale} ${set.id}`).toContain(set.name);
+      }
+      for (const group of setsBySeries()) {
+        const seriesTitle = seriesSearchTitle(m, locale, group.series, group.sets.length);
+        const seriesDescription = seriesSearchDescription(m, locale, group.series, group.sets.length);
+        const visible = seriesTitle.length + suffix.length <= 60 ? seriesTitle.length + suffix.length : seriesTitle.length;
+        expect(visible, `${locale} ${group.series} ${seriesTitle}`).toBeLessThanOrEqual(60);
+        expect(seriesDescription.length, `${locale} ${group.series}`).toBeLessThanOrEqual(160);
+        expect(seriesTitle, `${locale} ${group.series}`).toMatch(/Pokémon/);
+        expect(seriesDescription, `${locale} ${group.series}`).toContain(group.series);
+      }
+      expect(m.meta.deltaReignMetaTitle.length, locale).toBeLessThanOrEqual(60);
+      expect(m.meta.deltaReignMetaDescription.length, locale).toBeLessThanOrEqual(160);
+    }
   });
 });
 

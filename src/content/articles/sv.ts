@@ -261,7 +261,7 @@ export function swedishArticles(): ArticleCopy[] {
           id: "the-151",
           heading: "Vad de 151 betyder",
           paragraphs: [
-            "De 151 är ett Pokédexintervall, inte en enda produkt. [[Generation 1|/collections/generation/1]] listar varje art i det intervallet, med några av seten där var och en förekommer. Den sidan är checklistan jag använder. Den är inte samma sak som Base, som är 102 kort och innehåller tränare och energi. Folk blandar ihop de två antalen. Jag håller isär dem så att pärmen får rätt antal fickor.",
+            "De 151 är ett Pokédexintervall, inte en enda produkt. [[Generation 1|/collections/generation/1]] listar varje art i det intervallet, med några av seten där var och en förekommer. Den sidan är checklistan jag använder. Den är inte samma sak som Base, som är 102 kort och innehåller tränare och energi. Folk blandar ihop de två antalen. Jag håller isär dem så att pärmen får rätt antal fickor. Söker du 2023 års set som heter [[151|/collections/set/sv3pt5]]? Det är en annan lista.",
             "[[Anteckningen om Pokédex-pärmen|/guides/pokedex-binder]] är samma metod för alla {species} arter. Den här anteckningen stannar vid den första boken, för de ursprungliga 151 är pärmen jag oftast får frågor om. [[Den långa guiden|/guides/collecting-binders]] förklarar varför det här är en generationspärm och inte en setpärm. En produktförpackning med «151» på locket är inte automatiskt den här checklistan.",
           ],
         },

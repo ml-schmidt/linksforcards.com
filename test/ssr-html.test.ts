@@ -51,6 +51,24 @@ describe("public HTML without JavaScript", () => {
     expect(html.match(/<li /g)?.length).toBe(60);
   });
 
+  it("loads the first row of card images immediately and leaves the rest lazy", () => {
+    const rows = Array.from({ length: 8 }, (_, index) => ({
+      key: String(index + 1),
+      title: `Card ${index + 1}`,
+      detail: "Base",
+      have: false,
+      image: `https://assets.tcgdex.net/en/base/base1/${index + 1}/low.webp`,
+      alt: `Card ${index + 1}`,
+    }));
+    const html = renderToStaticMarkup(createElement(Checklist, { rows, labels: getMessages("us").checklist }));
+    const images = [...html.matchAll(/<img\b[^>]*>/g)].map((match) => match[0]);
+    expect(images).toHaveLength(8);
+    expect(images.filter((tag) => tag.includes('loading="eager"'))).toHaveLength(6);
+    expect(images.filter((tag) => tag.includes('loading="lazy"'))).toHaveLength(2);
+    expect(images.filter((tag) => /fetchpriority="high"/i.test(tag))).toHaveLength(1);
+    expect(html).not.toContain("/_next/image");
+  });
+
   it("lists every species link on the Pokédex index", () => {
     const html = renderToStaticMarkup(
       createElement(PokedexBrowser, {

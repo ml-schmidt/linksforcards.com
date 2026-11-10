@@ -261,7 +261,7 @@ export function finnishArticles(): ArticleCopy[] {
           id: "the-151",
           heading: "Mitä ne 151 tarkoittavat",
           paragraphs: [
-            "Ne 151 ovat Pokédex-väli, eivät yksi tuote. [[Sukupolvi 1|/collections/generation/1]] luettelee jokaisen lajin sillä välillä ja muutaman setin, jossa kukin esiintyy. Se sivu on tarkistuslista, jota minä käytän. Se ei ole sama asia kuin Base, jossa on 102 korttia ja mukana valmentajia ja energioita. Ihmiset sekoittavat ne kaksi lukua. Minä pidän ne erillään, jotta kansiossa on oikea määrä taskuja.",
+            "Ne 151 ovat Pokédex-väli, eivät yksi tuote. [[Sukupolvi 1|/collections/generation/1]] luettelee jokaisen lajin sillä välillä ja muutaman setin, jossa kukin esiintyy. Se sivu on tarkistuslista, jota minä käytän. Se ei ole sama asia kuin Base, jossa on 102 korttia ja mukana valmentajia ja energioita. Ihmiset sekoittavat ne kaksi lukua. Minä pidän ne erillään, jotta kansiossa on oikea määrä taskuja. Etsitkö vuoden 2023 settiä nimeltä [[151|/collections/set/sv3pt5]]? Se on eri lista.",
             "[[Muistiinpano Pokédex-kansiosta|/guides/pokedex-binder]] on sama menetelmä kaikille {species} lajille. Tämä muistiinpano pysyy ensimmäisessä kirjassa, koska alkuperäiset 151 ovat kansio, josta minulta kysytään useimmin. [[Pitkä opas|/guides/collecting-binders]] selittää, miksi tämä on sukupolvikansio eikä settikansio. Tuotepakkaus, jonka kannessa lukee «151», ei automaattisesti ole tämä tarkistuslista. Kannen luku ja sivun luku saavat olla eri. Uskon sivua, koska taskut leikataan sen mukaan. Kansi on myyjän lause, sivu on minun työni.",
           ],
         },

@@ -5,6 +5,8 @@ import { CardPicture } from "@/components/site/card-picture";
 
 type Row = { key: string; title: string; detail: string; have: boolean; image?: string | null; alt?: string; href?: string };
 
+const EAGER_IMAGES = 6;
+
 export function Checklist({
   rows,
   labels,
@@ -45,6 +47,9 @@ export function Checklist({
     return () => window.removeEventListener("afterprint", done);
   }, [printing]);
 
+  const listed = printing ? rows : visible;
+  let imageSlot = 0;
+
   return (
     <div>
       <div className="filters">
@@ -73,18 +78,27 @@ export function Checklist({
       </div>
       {visible.length === 0 ? <p>{labels.empty}</p> : null}
       <ol className="checklist">
-        {(printing ? rows : visible).map((row) => (
-          <li key={row.key} id={`line-${row.key}`} className={row.have ? "have" : "miss"}>
-            <span className="card-shot thumb">
-              <CardPicture src={row.image ?? null} alt={row.alt ?? ""} quality="low" />
-            </span>
-            <span>
-              <strong>{row.href ? <a href={row.href}>{row.title}</a> : row.title}</strong>
-              {row.detail ? <small>{row.detail}</small> : null}
-            </span>
-            <span className="state">{row.have ? labels.inBinder : labels.stillMissing}</span>
-          </li>
-        ))}
+        {listed.map((row) => {
+          const slot = row.image ? imageSlot++ : -1;
+          return (
+            <li key={row.key} id={`line-${row.key}`} className={row.have ? "have" : "miss"}>
+              <span className="card-shot thumb">
+                <CardPicture
+                  src={row.image ?? null}
+                  alt={row.alt ?? ""}
+                  quality="low"
+                  eager={slot >= 0 && slot < EAGER_IMAGES}
+                  priority={slot === 0}
+                />
+              </span>
+              <span>
+                <strong>{row.href ? <a href={row.href}>{row.title}</a> : row.title}</strong>
+                {row.detail ? <small>{row.detail}</small> : null}
+              </span>
+              <span className="state">{row.have ? labels.inBinder : labels.stillMissing}</span>
+            </li>
+          );
+        })}
       </ol>
     </div>
   );

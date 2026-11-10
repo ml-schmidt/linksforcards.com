@@ -26,7 +26,7 @@
     "id": "Indonesisch"
   },
   "meta": {
-    "homeTitle": "LinksForCards",
+    "homeTitle": "LinksForCards – Pokémon-kaartmappen voor kinderen",
     "homeDescription": "Ik ben Magnus Schmidt. Ik verzamel Pokémon-kaarten bij winkels in Europa en de Verenigde Staten, maak set- en generatiebinders vol en geef die binders aan kinderen. Deze pagina is het openbare verslag.",
     "bindersTitle": "Binders en Pokédex",
     "bindersDescription": "De lijsten van mijn set- en generatiebinders, met wat ik al heb en wat nog ontbreekt.",
@@ -59,7 +59,21 @@
     "themesDescription": "Lijsten voor een Pokémon, een tekenaar of een soort kaart. Een gevulde balk is wat ik al heb.",
     "cardsTitle": "Pokémon-kaartenlijst",
     "illustratorsTitle": "Kaartillustratoren",
-    "illustratorTitle": "{name}, kaartillustrator"
+    "illustratorTitle": "{name}, kaartillustrator",
+    "setMetaTitle": "{name}: alle {total} Pokémon-kaarten + checklist",
+    "setMetaTitleShort": "{name}: alle {total} Pokémon-kaarten",
+    "setMetaTitleTiny": "{name}: {total} Pokémon-kaarten",
+    "setMetaDescription": "Elke kaart in de Pokémon TCG-set {name} ({series}, {year}): alle {total} kaarten op setvolgorde met nummers en plaatjes, plus een gratis afdrukbare checklist.",
+    "setMetaDescriptionShort": "Pokémon TCG {name} ({series}, {year}): alle {total} kaarten en een gratis afdrukbare checklist.",
+    "setMetaDescriptionTiny": "Pokémon {name} ({year}): alle {total} kaarten en een checklist.",
+    "seriesMetaTitle": "Pokémon-serie {series}: kaartenlijsten voor alle {count} sets",
+    "seriesMetaTitleOne": "Pokémon-serie {series}: de kaartenlijst",
+    "seriesMetaTitleShort": "Pokémon {series}: lijsten voor {count} sets",
+    "seriesMetaDescription": "Alle {count} sets van {series} in verschijningsvolgorde, elk met een volledige kaartenlijst en een gratis afdrukbare checklist.",
+    "seriesMetaDescriptionOne": "De set {series}, met een volledige kaartenlijst en een gratis afdrukbare checklist.",
+    "seriesMetaDescriptionShort": "{count} sets van {series}, elk met een kaartenlijst en een checklist.",
+    "deltaReignMetaTitle": "Delta Reign-kaartenlijst, datum en checklist",
+    "deltaReignMetaDescription": "Wat Pokémon heeft gepubliceerd over Mega Evolution—Delta Reign: de data, en de checklist die leeg blijft tot de kaartenlijst echt is."
   },
   "nav": {
     "primary": "Pagina's",
@@ -366,7 +380,22 @@
     "faq": "Vragen over deze kaart",
     "cost": "Kosten",
     "damage": "Schade",
-    "alsoHeld": "Ook in de verzameling: {languages}."
+    "alsoHeld": "Ook in de verzameling: {languages}.",
+    "metaYear": " ({year})",
+    "metaLead": "{name} {fraction} uit {set}{year}",
+    "metaKind": "{lead}: {kind}",
+    "metaRarityType": "{rarity} {type}-kaart",
+    "metaTypeOnly": "{type}-kaart",
+    "metaRarityKind": "{rarity} {kind}-kaart",
+    "metaPlain": "{kind}-kaart",
+    "metaPokemon": "Pokémon",
+    "metaTrainer": "Trainer",
+    "metaEnergy": "Energie",
+    "metaOther": "overige",
+    "metaIllustrated": "{base}, getekend door {illustrator}",
+    "metaTail": "{base}. Kaarttekst, mappen waar de kaart in past, en andere drukken.",
+    "printedAs": "Gedrukt als",
+    "imageAlt": "{name} {fraction} – Pokémon-kaart uit {set}"
   },
   "cardSearch": {
     "kicker": "Kaartenlijst",
@@ -463,5 +492,20 @@
     "openTheme": "Open de mappagina",
     "openGeneration": "Open de generatiepagina",
     "footerNote": "Een vinkje als de kaart in de map zit."
+  },
+  "guideNotes": {
+    "heading": "Uit de gidsen",
+    "setOrder": "[[Sets op volgorde|/guides/sets-in-order]] is hoe ik deze lijst tussen de andere leg.",
+    "organize": "[[Hoe ik een binder indeel|/guides/organize-binder]] is het paginaformaat dat ik gebruik als de kaarten gesorteerd zijn.",
+    "bulk": "Een doos bulk sorteren? [[Wat ik met bulk doe|/guides/bulk-cards]] is de ronde voordat een kaart op deze lijst komt.",
+    "read": "[[Hoe ik een kaart lees|/guides/read-a-card]] laat zien waar het verzamelnummer en het setsymbool staan.",
+    "protect": "[[Hoe ik een kaart bescherm|/guides/protect-cards]] is het hoesje, voordat een kaart in een vak gaat.",
+    "fakes": "[[Hoe ik een vervalsing herken|/guides/spot-fakes]] is de controle als een kaart niet bij de afbeelding past.",
+    "collecting": "[[Hoe ik in binders verzamel|/guides/collecting-binders]] is de langere notitie over een setbinder en een generatiebinder.",
+    "pokedex": "[[Een Pokédex-binder|/guides/pokedex-binder]] houdt één kaart van elke soort, uit elke set.",
+    "gen1": "[[De gen-1-checklist|/guides/gen-1-checklist]] zijn de oorspronkelijke 151 soorten, en dat is niet dezelfde lijst als één set.",
+    "set151": "Zoek je de set uit 2023 die [[151|/collections/set/sv3pt5]] heet? Dat is een andere lijst dan de oorspronkelijke 151 soorten.",
+    "sv3pt5": "Deze pagina is de set uit 2023 die 151 heet. De oorspronkelijke 151 soorten staan in [[de gen-1-checklist|/guides/gen-1-checklist]].",
+    "homeGive": "Als een binder vol is, gaat hij weg. [[Een binder weggeven|/guides/donating-cards]] is dat deel van het project."
   }
 }

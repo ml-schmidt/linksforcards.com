@@ -264,7 +264,7 @@ export function polishArticles(): ArticleCopy[] {
           id: "the-151",
           heading: "Co znaczy te 151",
           paragraphs: [
-            "Te 151 to zakres Pokédexa, nie jeden produkt. [[Generacja 1|/collections/generation/1]] wymienia każdy gatunek z tego zakresu i kilka setów, w których się pojawia. Ta strona jest listą kontrolną, której używam. To nie to samo co Base, który ma 102 karty i zawiera trenerów oraz energie. Ludzie mieszają te dwie liczby. Trzymam je osobno, żeby segregator dostał właściwą liczbę kieszonek.",
+            "Te 151 to zakres Pokédexa, nie jeden produkt. [[Generacja 1|/collections/generation/1]] wymienia każdy gatunek z tego zakresu i kilka setów, w których się pojawia. Ta strona jest listą kontrolną, której używam. To nie to samo co Base, który ma 102 karty i zawiera trenerów oraz energie. Ludzie mieszają te dwie liczby. Trzymam je osobno, żeby segregator dostał właściwą liczbę kieszonek. Szukasz setu z 2023 roku o nazwie [[151|/collections/set/sv3pt5]]? To inna lista.",
             "[[Notatka o segregatorze Pokédexa|/guides/pokedex-binder]] to ta sama metoda dla wszystkich {species} gatunków. Ta notatka zostaje przy pierwszej książce, bo pierwsze 151 to segregator, o który pytają mnie najczęściej. [[Długi przewodnik|/guides/collecting-binders]] wyjaśnia, czemu to segregator generacji, a nie segregator setu. Pudełko produktu z «151» na pokrywce nie jest automatycznie tą listą kontrolną. Liczba na pokrywce i liczba na stronie mogą się różnić. Ufam stronie, bo kieszonki tnę według niej. Pokrywka jest zdaniem sprzedawcy, strona jest moją robotą.",
           ],
         },

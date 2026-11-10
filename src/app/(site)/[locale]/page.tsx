@@ -6,6 +6,7 @@ import { DoodleCluster } from "@/components/site/doodles";
 import { EmailText } from "@/components/site/email-text";
 import { JsonLd } from "@/components/site/json-ld";
 import { ProgressBar } from "@/components/site/progress-bar";
+import { GuideNotes } from "@/components/site/guide-notes";
 import { ShopLink } from "@/components/site/shop-link";
 import { SiteLinks } from "@/components/site/site-links";
 import { themeCopy } from "@/content/theme-copy";
@@ -227,6 +228,11 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
           </a>
         </p>
       </section>
+      <GuideNotes
+        locale={locale}
+        heading={m.guideNotes.heading}
+        notes={[m.guideNotes.bulk, m.guideNotes.gen1, m.guideNotes.homeGive, m.guideNotes.read]}
+      />
       <section className="faq">
         <h2>{m.home.faqTitle}</h2>
         {faqs.map((item) => (

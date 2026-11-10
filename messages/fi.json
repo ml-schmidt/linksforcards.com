@@ -26,7 +26,7 @@
     "id": "indonesia"
   },
   "meta": {
-    "homeTitle": "LinksForCards",
+    "homeTitle": "LinksForCards – Pokémon-korttikansiot lapsille",
     "homeDescription": "Olen Magnus Schmidt. Kerään Pokémon-kortteja kaupoista Euroopassa ja Yhdysvalloissa, täytän setti- ja sukupolvikansioita ja annan kansiot lapsille. Tämä sivu on julkinen kirjanpito.",
     "bindersTitle": "Kansiot ja Pokédex",
     "bindersDescription": "Setti- ja sukupolvikansioiden listat: mitä minulla jo on ja mitä vielä puuttuu.",
@@ -59,7 +59,21 @@
     "themesDescription": "Listat yhdelle Pokémonille, yhdelle taiteilijalle tai yhdelle korttityypille. Täysi palkki on se, mitä minulla jo on.",
     "cardsTitle": "Pokémon-korttilista",
     "illustratorsTitle": "Korttien kuvittajat",
-    "illustratorTitle": "{name}, korttien kuvittaja"
+    "illustratorTitle": "{name}, korttien kuvittaja",
+    "setMetaTitle": "{name}: kaikki {total} Pokémon-korttia + tarkistuslista",
+    "setMetaTitleShort": "{name}: kaikki {total} Pokémon-korttia",
+    "setMetaTitleTiny": "{name}: {total} Pokémon-korttia",
+    "setMetaDescription": "Kaikki kortit Pokémon TCG -setissä {name} ({series}, {year}): kaikki {total} korttia setin järjestyksessä, numeroineen ja kuvineen, sekä ilmainen tulostettava tarkistuslista.",
+    "setMetaDescriptionShort": "Pokémon TCG {name} ({series}, {year}): kaikki {total} korttia ja ilmainen tulostettava tarkistuslista.",
+    "setMetaDescriptionTiny": "Pokémon {name} ({year}): kaikki {total} korttia ja tarkistuslista.",
+    "seriesMetaTitle": "Pokémon-sarja {series}: korttilistat kaikille {count} setille",
+    "seriesMetaTitleOne": "Pokémon-sarja {series}: korttilista",
+    "seriesMetaTitleShort": "Pokémon {series}: listat {count} setille",
+    "seriesMetaDescription": "Kaikki {count} settiä sarjassa {series} julkaisujärjestyksessä, jokaisessa täysi korttilista ja ilmainen tulostettava tarkistuslista.",
+    "seriesMetaDescriptionOne": "Setti {series}, täydellä korttilistalla ja ilmaisella tulostettavalla tarkistuslistalla.",
+    "seriesMetaDescriptionShort": "{count} settiä sarjassa {series}, jokaisessa korttilista ja tarkistuslista.",
+    "deltaReignMetaTitle": "Delta Reign -korttilista, päivä ja tarkistuslista",
+    "deltaReignMetaDescription": "Mitä Pokémon on julkaissut Mega Evolution—Delta Reignistä: päivämäärät ja tarkistuslista, joka pysyy tyhjänä kunnes korttilista on oikea."
   },
   "nav": {
     "primary": "Sivut",
@@ -366,7 +380,22 @@
     "faq": "Kysymyksiä tästä kortista",
     "cost": "Kustannus",
     "damage": "Vahinko",
-    "alsoHeld": "Myös kokoelmassa: {languages}."
+    "alsoHeld": "Myös kokoelmassa: {languages}.",
+    "metaYear": " ({year})",
+    "metaLead": "{name} {fraction} setistä {set}{year}",
+    "metaKind": "{lead}: {kind}",
+    "metaRarityType": "{rarity} {type}-kortti",
+    "metaTypeOnly": "{type}-kortti",
+    "metaRarityKind": "{rarity} {kind}-kortti",
+    "metaPlain": "{kind}-kortti",
+    "metaPokemon": "Pokémon",
+    "metaTrainer": "Valmentaja",
+    "metaEnergy": "Energia",
+    "metaOther": "muu",
+    "metaIllustrated": "{base}, kuvittanut {illustrator}",
+    "metaTail": "{base}. Kortin teksti, kansiot joihin se sopii, ja muut painokset.",
+    "printedAs": "Painettu muodossa",
+    "imageAlt": "{name} {fraction} – Pokémon-kortti, {set}"
   },
   "cardSearch": {
     "kicker": "Korttilista",
@@ -463,5 +492,20 @@
     "openTheme": "Avaa kansion sivu",
     "openGeneration": "Avaa sukupolven sivu",
     "footerNote": "Rasti, kun kortti on kansiossa."
+  },
+  "guideNotes": {
+    "heading": "Oppaista",
+    "setOrder": "[[Setit järjestyksessä|/guides/sets-in-order]] on tapa, jolla sijoitan tämän listan muiden joukkoon.",
+    "organize": "[[Miten järjestän kansion|/guides/organize-binder]] on sivukoko, jota käytän kun kortit on lajiteltu.",
+    "bulk": "Bulk-laatikko lajiteltavana? [[Mitä teen bulkille|/guides/bulk-cards]] on kierros ennen kuin kortti päätyy tälle listalle.",
+    "read": "[[Miten luen kortin|/guides/read-a-card]] näyttää, missä keräilynumero ja settisymboli ovat.",
+    "protect": "[[Miten suojaan kortin|/guides/protect-cards]] on suojus, ennen kuin kortti menee taskuun.",
+    "fakes": "[[Miten tunnistan väärennöksen|/guides/spot-fakes]] on tarkistus, kun kortti ei vastaa kuvaa.",
+    "collecting": "[[Miten kerään kansioihin|/guides/collecting-binders]] on pidempi muistiinpano settikansiosta ja sukupolvikansiosta.",
+    "pokedex": "[[Pokédex-kansio|/guides/pokedex-binder]] pitää yhden kortin kustakin lajista, mistä setistä tahansa.",
+    "gen1": "[[Sukupolven 1 tarkistuslista|/guides/gen-1-checklist]] on alkuperäiset 151 lajia, eikä se ole sama lista kuin yksi setti.",
+    "set151": "Etsitkö vuoden 2023 settiä nimeltä [[151|/collections/set/sv3pt5]]? Se on eri lista kuin alkuperäiset 151 lajia.",
+    "sv3pt5": "Tämä sivu on vuoden 2023 setti nimeltä 151. Alkuperäiset 151 lajia ovat [[sukupolven 1 tarkistuslista|/guides/gen-1-checklist]].",
+    "homeGive": "Kun kansio on täysi, se lähtee. [[Kansion antaminen eteenpäin|/guides/donating-cards]] on se osa projektia."
   }
 }
