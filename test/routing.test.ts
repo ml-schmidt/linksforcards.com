@@ -1,5 +1,7 @@
 import { describe, expect, it } from "vitest";
-import { localePath, resolveLocaleRequest, stripLocale } from "../src/lib/routing";
+import nextConfig from "../next.config";
+import { config as middlewareConfig } from "../src/middleware";
+import { localePath, resolveLocaleRequest, stripLocale, US_BEFORE_FILE_REWRITES } from "../src/lib/routing";
 
 function follow(pathname: string) {
   const first = resolveLocaleRequest(pathname);
@@ -21,22 +23,19 @@ describe("locale routing", () => {
   });
 
   it("serves US pages at the root and redirects /us in one hop", () => {
-    expect(resolveLocaleRequest("/")).toEqual({ action: "rewrite", pathname: "/us" });
-    expect(resolveLocaleRequest("/collections")).toEqual({ action: "rewrite", pathname: "/us/collections" });
-    expect(resolveLocaleRequest("/collections/themes")).toEqual({ action: "rewrite", pathname: "/us/collections/themes" });
-    expect(resolveLocaleRequest("/collections/themes/pikachu")).toEqual({
-      action: "rewrite",
-      pathname: "/us/collections/themes/pikachu",
-    });
+    expect(resolveLocaleRequest("/")).toEqual({ action: "next", noindex: false });
+    expect(resolveLocaleRequest("/collections")).toEqual({ action: "next", noindex: false });
+    expect(resolveLocaleRequest("/collections/themes")).toEqual({ action: "next", noindex: false });
+    expect(resolveLocaleRequest("/collections/themes/pikachu")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/us/collections/themes/pikachu")).toEqual({
       action: "redirect",
       pathname: "/collections/themes/pikachu",
     });
     expect(resolveLocaleRequest("/de/collections/themes")).toEqual({ action: "next", noindex: false });
-    expect(resolveLocaleRequest("/guides/bulk-cards")).toEqual({ action: "rewrite", pathname: "/us/guides/bulk-cards" });
-    expect(resolveLocaleRequest("/pokedex/25")).toEqual({ action: "rewrite", pathname: "/us/pokedex/25" });
-    expect(resolveLocaleRequest("/cards")).toEqual({ action: "rewrite", pathname: "/us/cards" });
-    expect(resolveLocaleRequest("/illustrators")).toEqual({ action: "rewrite", pathname: "/us/illustrators" });
+    expect(resolveLocaleRequest("/guides/bulk-cards")).toEqual({ action: "next", noindex: false });
+    expect(resolveLocaleRequest("/pokedex/25")).toEqual({ action: "next", noindex: false });
+    expect(resolveLocaleRequest("/cards")).toEqual({ action: "next", noindex: false });
+    expect(resolveLocaleRequest("/illustrators")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/illustrators/mitsuhiro-arita")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/us/illustrators/mitsuhiro-arita")).toEqual({
       action: "redirect",
@@ -52,7 +51,7 @@ describe("locale routing", () => {
     expect(resolveLocaleRequest("/de/cards/base1-4-charizard")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/us/cards")).toEqual({ action: "redirect", pathname: "/cards" });
     expect(resolveLocaleRequest("/de/cards")).toEqual({ action: "next", noindex: false });
-    expect(resolveLocaleRequest("/partners")).toEqual({ action: "rewrite", pathname: "/us/partners" });
+    expect(resolveLocaleRequest("/partners")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/us")).toEqual({ action: "redirect", pathname: "/" });
     expect(resolveLocaleRequest("/us/")).toEqual({ action: "redirect", pathname: "/" });
     expect(resolveLocaleRequest("/us/collections")).toEqual({ action: "redirect", pathname: "/collections" });
@@ -138,5 +137,32 @@ describe("locale routing", () => {
       if (first.action !== "redirect") continue;
       expect(follow(sample).action).not.toBe("redirect");
     }
+  });
+
+  it("rewrites unprefixed US pages in next.config, not in middleware", async () => {
+    const rewrites = await nextConfig.rewrites?.();
+    const before = rewrites && "beforeFiles" in rewrites ? rewrites.beforeFiles : [];
+    for (const rewrite of US_BEFORE_FILE_REWRITES) {
+      expect(before).toContainEqual(rewrite);
+    }
+    const sources = new Set(before.map((rewrite) => rewrite.source));
+    expect(sources.has("/")).toBe(true);
+    expect(sources.has("/cards/:slug")).toBe(true);
+    expect(sources.has("/collections/set/:setId([a-z0-9-]+)")).toBe(true);
+    expect(sources.has("/pokedex/:dex([1-9]\\d*)")).toBe(true);
+    const matcher = middlewareConfig.matcher;
+    expect(Array.isArray(matcher)).toBe(true);
+    const patterns = matcher as string[];
+    expect(patterns).not.toContain("/((?!_next/static|_next/image).*)");
+    expect(patterns).toContain("/cards");
+    expect(patterns).not.toContain("/cards/:slug");
+    expect(patterns).not.toContain("/pokedex/:dex");
+    expect(patterns).not.toContain("/collections/:path*");
+    expect(patterns.some((pattern) => pattern.includes("_next"))).toBe(false);
+    const redirects = await nextConfig.redirects?.();
+    const redirectSources = new Set((redirects ?? []).map((redirect) => redirect.source));
+    expect(redirectSources.has("/us")).toBe(true);
+    expect(redirectSources.has("/binders/:path*")).toBe(true);
+    expect([...redirectSources].some((source) => source.includes("(?!us"))).toBe(true);
   });
 });

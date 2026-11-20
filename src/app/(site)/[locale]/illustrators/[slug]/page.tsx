@@ -14,7 +14,7 @@ import { localePath } from "@/lib/routing";
 import { pageMetadata } from "@/lib/seo";
 import { loadPublic, type PublicSnapshot } from "@/lib/stats";
 
-/** One page per illustrator. The CDN caches it. The build does not prerender the catalog. */
+/** One page per illustrator. The CDN caches it for 30 days. The build does not prerender the catalog. */
 export const dynamic = "force-dynamic";
 
 function loggedCount(artist: Illustrator, snapshot: PublicSnapshot): number | null {

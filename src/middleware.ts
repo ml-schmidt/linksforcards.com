@@ -8,6 +8,11 @@ function withCdnCache(response: NextResponse, pathname: string, search: string):
   return response;
 }
 
+/**
+ * Only paths that still need a decision at request time. Catalog HTML is
+ * rewritten and cached from `next.config.ts`, so a crawler hit must not start
+ * this function. Vercel runs middleware before the CDN cache.
+ */
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
   const decision = resolveLocaleRequest(pathname);
@@ -15,11 +20,6 @@ export function middleware(request: NextRequest) {
     const url = new URL(decision.pathname, request.url);
     url.search = search;
     return NextResponse.redirect(url, 301);
-  }
-  if (decision.action === "rewrite") {
-    const url = request.nextUrl.clone();
-    url.pathname = decision.pathname;
-    return withCdnCache(NextResponse.rewrite(url), pathname, search);
   }
   const response = NextResponse.next();
   if (decision.noindex) {
@@ -31,5 +31,21 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image).*)"],
+  matcher: [
+    "/us",
+    "/us/:path*",
+    "/en",
+    "/en/:path*",
+    "/binders",
+    "/binders/:path*",
+    "/:locale(uk|de|fr|it|es|nl|sv|no|fi|pl)/binders",
+    "/:locale(uk|de|fr|it|es|nl|sv|no|fi|pl)/binders/:path*",
+    "/admin",
+    "/admin/:path*",
+    "/sitemap/root",
+    "/sitemap/root.xml",
+    // The card index is cached only when the query string is empty.
+    "/cards",
+    "/:locale(uk|de|fr|it|es|nl|sv|no|fi|pl)/cards",
+  ],
 };

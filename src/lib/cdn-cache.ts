@@ -4,14 +4,15 @@ import { localePath } from "./routing";
 /**
  * Cache at Vercel's CDN only. These responses are not ISR: the page is
  * dynamic, so a render is not written to the durable ISR cache. `s-maxage`
- * is one day. `stale-while-revalidate` keeps a hit fast for a week while one
- * request refreshes it. Donation text on a card can lag by that day.
+ * is 30 days. A one-day lifetime made the next daily crawl treat the page as
+ * stale, re-render it, and transfer the HTML again. Card facts rarely change,
+ * so donation text on a card can lag by this window.
  */
-export const CDN_CACHE_CONTROL = "public, s-maxage=86400, stale-while-revalidate=604800";
+export const CDN_CACHE_SECONDS = 60 * 60 * 24 * 30;
+export const CDN_CACHE_CONTROL = `public, s-maxage=${CDN_CACHE_SECONDS}, stale-while-revalidate=${CDN_CACHE_SECONDS}`;
 
-/** Checklists PDFs are catalog text. A week at the CDN is enough. */
-export const PDF_CACHE_CONTROL =
-  "public, max-age=86400, s-maxage=604800, stale-while-revalidate=2592000";
+/** Checklist PDFs are catalog text. Same 30-day CDN lifetime as the HTML. */
+export const PDF_CACHE_CONTROL = `public, max-age=86400, s-maxage=${CDN_CACHE_SECONDS}, stale-while-revalidate=${CDN_CACHE_SECONDS}`;
 
 const PREFIX = `(?:/(?:${LOCALES.join("|")}))?`;
 

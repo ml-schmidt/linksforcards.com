@@ -16,12 +16,39 @@ export function localePath(locale: string, pathname: string): string {
 
 const PASS_THROUGH = new Set(["/robots.txt", "/sitemap.xml", "/icon.svg", "/favicon.ico"]);
 
-const EXACT_PAGES = new Set(["/partners", "/updates", "/donations", "/privacy", "/imprint"]);
-
 export type LocaleDecision =
   | { action: "next"; noindex: boolean }
-  | { action: "redirect"; pathname: string }
-  | { action: "rewrite"; pathname: string };
+  | { action: "redirect"; pathname: string };
+
+/**
+ * Unprefixed US pages, rewritten in `beforeFiles` so the public path is the
+ * CDN cache key. A middleware rewrite runs before that cache and skips it.
+ * Card, illustrator, and checklist detail routes are included here too.
+ */
+export const US_BEFORE_FILE_REWRITES: { source: string; destination: string }[] = [
+  { source: "/", destination: "/us" },
+  { source: "/partners", destination: "/us/partners" },
+  { source: "/updates", destination: "/us/updates" },
+  { source: "/donations", destination: "/us/donations" },
+  { source: "/privacy", destination: "/us/privacy" },
+  { source: "/imprint", destination: "/us/imprint" },
+  { source: "/collections", destination: "/us/collections" },
+  { source: "/collections/themes", destination: "/us/collections/themes" },
+  { source: "/collections/themes/:slug([a-z0-9-]+)", destination: "/us/collections/themes/:slug" },
+  { source: "/collections/generation/:gen([1-9])", destination: "/us/collections/generation/:gen" },
+  { source: "/collections/set/:setId([a-z0-9-]+)", destination: "/us/collections/set/:setId" },
+  { source: "/collections/series/:slug([a-z0-9-]+)", destination: "/us/collections/series/:slug" },
+  { source: "/guides", destination: "/us/guides" },
+  { source: "/guides/:slug([a-z0-9-]+)", destination: "/us/guides/:slug" },
+  { source: "/pokedex/:dex([1-9]\\d*)", destination: "/us/pokedex/:dex" },
+  { source: "/cards", destination: "/us/cards" },
+  { source: "/cards/:slug", destination: "/us/cards/:slug" },
+  { source: "/illustrators", destination: "/us/illustrators" },
+  { source: "/illustrators/:slug", destination: "/us/illustrators/:slug" },
+  { source: "/checklists", destination: "/us/checklists" },
+  { source: "/checklists/:kind/:id/pdf/:paper", destination: "/us/checklists/:kind/:id/pdf/:paper" },
+  { source: "/checklists/:kind/:id", destination: "/us/checklists/:kind/:id" },
+];
 
 function collectionFromBinders(pathname: string): string | null {
   if (pathname === "/binders") return "/collections";
@@ -30,29 +57,6 @@ function collectionFromBinders(pathname: string): string | null {
   const set = pathname.match(/^\/binders\/set\/([a-z0-9]+)$/);
   if (set) return `/collections/set/${set[1]}`;
   return null;
-}
-
-function isContentPath(pathname: string): boolean {
-  if (
-    pathname === "/collections" ||
-    pathname === "/guides" ||
-    pathname === "/cards" ||
-    pathname === "/illustrators" ||
-    pathname === "/checklists"
-  ) {
-    return true;
-  }
-  // Hyphens stay allowed so /collections/set/delta-reign rewrites with the other set pages.
-  if (/^\/collections\/(?:generation\/[1-9]|set\/[a-z0-9-]+|series\/[a-z0-9-]+|themes(?:\/[a-z0-9-]+)?)$/.test(pathname)) return true;
-  if (/^\/pokedex\/[1-9]\d*$/.test(pathname)) return true;
-  if (/^\/guides\/[a-z0-9-]+$/.test(pathname)) return true;
-  // Card, illustrator, and checklist detail pages are rewritten in next.config.ts.
-  // A middleware rewrite serves those on-demand pages dynamically and skips their cache.
-  return false;
-}
-
-function isUsPage(pathname: string): boolean {
-  return pathname === "/" || EXACT_PAGES.has(pathname) || isContentPath(pathname);
 }
 
 function stripOne(pathname: string, prefix: "us" | "en"): string | null {
@@ -98,9 +102,7 @@ function resolveCore(pathname: string): LocaleDecision {
   }
   const moved = collectionFromBinders(pathname);
   if (moved) return { action: "redirect", pathname: moved };
-  if (isUsPage(pathname)) {
-    return { action: "rewrite", pathname: pathname === "/" ? "/us" : `/us${pathname}` };
-  }
+  // Unprefixed US pages are rewritten in next.config.ts (US_BEFORE_FILE_REWRITES).
   return { action: "next", noindex: false };
 }
 

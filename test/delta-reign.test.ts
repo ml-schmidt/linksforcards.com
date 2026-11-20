@@ -71,11 +71,8 @@ describe("delta reign", () => {
     expect(findDeltaReignSet()).toBeNull();
   });
 
-  it("rewrites the unprefixed path and leaves a locale prefix alone", () => {
-    expect(resolveLocaleRequest("/collections/set/delta-reign")).toEqual({
-      action: "rewrite",
-      pathname: "/us/collections/set/delta-reign",
-    });
+  it("leaves the unprefixed path for the config rewrite and a locale prefix alone", () => {
+    expect(resolveLocaleRequest("/collections/set/delta-reign")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/de/collections/set/delta-reign")).toEqual({ action: "next", noindex: false });
   });
 

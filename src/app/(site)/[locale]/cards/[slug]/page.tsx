@@ -26,7 +26,7 @@ import { loadPublic, otherLanguagesHeld } from "@/lib/stats";
  * About 20,000 cards in every locale. Rendering them on demand and caching the
  * response at the CDN avoids an ISR write per URL. Card facts come from the
  * catalog files. Whether a card is logged comes from the shipment table and
- * can lag by a day, which is the CDN lifetime.
+ * can lag by up to 30 days, which is the CDN lifetime.
  */
 export const dynamic = "force-dynamic";
 
