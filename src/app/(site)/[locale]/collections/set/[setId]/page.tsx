@@ -25,7 +25,7 @@ import { kindSummary, setFacts } from "@/lib/set-facts";
 import { loadPublic, markFor, otherLanguagesHeld } from "@/lib/stats";
 import { themesForSet } from "@/lib/themes";
 
-/** One page per set. The CDN caches it. Held cards can lag by a day. */
+/** One page per set. The CDN caches it. Held cards can lag by up to 30 days. */
 export const dynamic = "force-dynamic";
 
 const SAMPLE = 8;

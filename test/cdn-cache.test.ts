@@ -3,6 +3,7 @@ import { describe, expect, it } from "vitest";
 import { listCardPaths } from "../src/lib/card-page";
 import {
   CDN_CACHE_CONTROL,
+  CDN_CACHE_SECONDS,
   LIVE_ISR_PATHS,
   PDF_CACHE_CONTROL,
   cdnCacheControlFor,
@@ -47,6 +48,12 @@ const DAILY_ISR_ROUTES = [
 ];
 
 describe("CDN cache paths", () => {
+  it("keeps catalog HTML fresh for 30 days so a daily crawl does not re-render", () => {
+    expect(CDN_CACHE_SECONDS).toBe(2_592_000);
+    expect(CDN_CACHE_CONTROL).toBe("public, s-maxage=2592000, stale-while-revalidate=2592000");
+    expect(PDF_CACHE_CONTROL).toContain("s-maxage=2592000");
+  });
+
   it("caches card, illustrator, checklist, pokedex, and collection detail URLs", () => {
     const samples = [
       "/cards/base1-4-charizard",

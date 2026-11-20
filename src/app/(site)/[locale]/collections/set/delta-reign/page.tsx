@@ -26,7 +26,7 @@ import { seriesSlug } from "@/lib/series";
 import { kindSummary, setFacts } from "@/lib/set-facts";
 import { loadPublic } from "@/lib/stats";
 
-/** Same CDN lifetime as the other set pages. Held cards can lag by a day. */
+/** Same CDN lifetime as the other set pages. Held cards can lag by up to 30 days. */
 export const dynamic = "force-dynamic";
 
 function kindLabel(kind: CardKind, m: Messages): string {

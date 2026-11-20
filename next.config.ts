@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import { cdnConfigHeaders } from "./src/lib/cdn-cache";
+import { US_BEFORE_FILE_REWRITES } from "./src/lib/routing";
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
@@ -15,15 +16,51 @@ const nextConfig: NextConfig = {
     "/:locale/checklists/:kind/:id/pdf/:paper": ["./src/assets/fonts/**/*"],
     "/checklists/:kind/:id/pdf/:paper": ["./src/assets/fonts/**/*"],
   },
+  async redirects() {
+    return [
+      // One hop, including a trailing slash. These must not land on another redirect.
+      { source: "/us", destination: "/", statusCode: 301 },
+      { source: "/us/", destination: "/", statusCode: 301 },
+      { source: "/en", destination: "/", statusCode: 301 },
+      { source: "/en/", destination: "/", statusCode: 301 },
+      { source: "/binders", destination: "/collections", statusCode: 301 },
+      { source: "/binders/", destination: "/collections", statusCode: 301 },
+      { source: "/binders/:path*", destination: "/collections/:path*", statusCode: 301 },
+      { source: "/binders/:path*/", destination: "/collections/:path*", statusCode: 301 },
+      {
+        source: "/:locale(uk|de|fr|it|es|nl|sv|no|fi|pl)/binders",
+        destination: "/:locale/collections",
+        statusCode: 301,
+      },
+      {
+        source: "/:locale(uk|de|fr|it|es|nl|sv|no|fi|pl)/binders/",
+        destination: "/:locale/collections",
+        statusCode: 301,
+      },
+      {
+        source: "/:locale(uk|de|fr|it|es|nl|sv|no|fi|pl)/binders/:path*",
+        destination: "/:locale/collections/:path*",
+        statusCode: 301,
+      },
+      {
+        source: "/:locale(uk|de|fr|it|es|nl|sv|no|fi|pl)/binders/:path*/",
+        destination: "/:locale/collections/:path*",
+        statusCode: 301,
+      },
+      // Other trailing slashes. /us and /en stay with middleware so /us/en/… collapses in one hop.
+      {
+        source: "/:path((?!us$|us/|en$|en/).+)/",
+        destination: "/:path",
+        statusCode: 301,
+      },
+    ];
+  },
   async rewrites() {
     return {
       beforeFiles: [
-        // US English has no public prefix. Map these detail URLs onto /us here
-        // so the request path stays the CDN cache key.
-        { source: "/cards/:slug", destination: "/us/cards/:slug" },
-        { source: "/illustrators/:slug", destination: "/us/illustrators/:slug" },
-        { source: "/checklists/:kind/:id/pdf/:paper", destination: "/us/checklists/:kind/:id/pdf/:paper" },
-        { source: "/checklists/:kind/:id", destination: "/us/checklists/:kind/:id" },
+        // US English has no public prefix. These rewrites run on the CDN, so the
+        // public path stays the cache key and middleware does not run first.
+        ...US_BEFORE_FILE_REWRITES,
       ],
       afterFiles: [
         { source: "/sitemap.xml", destination: "/sitemap-index" },

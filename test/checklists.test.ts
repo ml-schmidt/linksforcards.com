@@ -111,8 +111,8 @@ describe("printable checklists", () => {
     expect(getChecklist("us", "theme", "pikachu")?.indexed).toBe(true);
   });
 
-  it("serves the checklist index through middleware and leaves detail pages for the config rewrite", () => {
-    expect(resolveLocaleRequest("/checklists")).toEqual({ action: "rewrite", pathname: "/us/checklists" });
+  it("leaves checklist URLs for the config rewrite and redirects the old /us prefix", () => {
+    expect(resolveLocaleRequest("/checklists")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/checklists/set/base1")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/checklists/theme/pikachu/pdf/a4")).toEqual({ action: "next", noindex: false });
     expect(resolveLocaleRequest("/checklists/generation/1/pdf/letter")).toEqual({ action: "next", noindex: false });

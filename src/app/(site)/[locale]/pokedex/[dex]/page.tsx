@@ -26,7 +26,7 @@ import { absoluteUrl } from "@/lib/site";
 import { loadPublic } from "@/lib/stats";
 import { themesForDex } from "@/lib/themes";
 
-/** One page per species. The CDN caches it so the 1,025 × locale set is not an ISR write. */
+/** One page per species. The CDN caches it for 30 days so the 1,025 × locale set is not an ISR write. */
 export const dynamic = "force-dynamic";
 
 function kindLabel(kind: CardKind, m: Messages): string {
