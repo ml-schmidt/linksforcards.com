@@ -15,7 +15,21 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
-      - run: npm run build
+      # next/font downloads Quicksand and Nunito during the build. That request
+      # sometimes fails on the runner; one retry is enough.
+      - name: Build
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if npm run build; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            echo "Build failed on attempt ${attempt}; retrying"
+            sleep 15
+          done
         env:
           NEXT_PUBLIC_SITE_URL: https://linksforcards.com
           NEXT_PUBLIC_SUBSTACK_URL: https://linksforcards.substack.com
