@@ -1,0 +1,20 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "routes": [
+    {
+      "src": "/(?![Rr][Oo][Bb][Oo][Tt][Ss]\\.[Tt][Xx][Tt]/?$).*",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": {
+            "re": "(?:^|[^A-Za-z0-9])(?:AhrefsBot|AhrefsSiteAudit|SemrushBot|SiteAuditBot|SemrushBot-SA|SemrushBot-BA|SemrushBot-SI|SemrushBot-SWA|SplitSignalBot|SemrushBot-OCOB|SemrushBot-FT|RyteBot|SemrushBot-ESI)(?:[^A-Za-z0-9]|$)"
+          }
+        }
+      ],
+      "mitigate": {
+        "action": "deny"
+      }
+    }
+  ]
+}
