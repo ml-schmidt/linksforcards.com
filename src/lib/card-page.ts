@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { Graph } from "schema-dts";
 import type { CardFaq } from "@/content/card-story-types";
 import { themeCopy } from "@/content/theme-copy";
-import { cardImageAlt, cardImageKind, cardImageUrl } from "./card-images";
+import { cardImageKind, cardImageUrl } from "./card-images";
 import { numbersMatch } from "./cards";
 import { printingsForDex, type LookupPrinting } from "./card-lookup";
 import { buildCardStory } from "./card-story";
@@ -48,6 +48,9 @@ export type CardView = {
   paragraphs: string[];
   faqs: CardFaq[];
   fraction: string;
+  /** Three-digit printed number, when the card prints one that differs from `fraction`. */
+  printedFraction: string | null;
+  imageAlt: string;
   status: CardStatus;
   crumbs: Crumb[];
   facts: CardFact[];
@@ -70,6 +73,22 @@ export function setPrintedTotal(set: CatalogSet): number {
 
 export function cardFraction(set: CatalogSet, card: { n: string }): string {
   return `${card.n}/${setPrintedTotal(set)}`;
+}
+
+/** Sword & Shield onward print the collector number as three digits, such as 018/091. */
+const PADDED_NUMBER_SERIES = new Set(["Sword & Shield", "Scarlet & Violet", "Mega Evolution"]);
+
+/**
+ * The number as a modern card prints it, when that differs from the catalog
+ * number. Promo codes such as SWSH001 and TG01 are already printed forms.
+ */
+export function printedCardFraction(set: CatalogSet, card: { n: string }): string | null {
+  if (!PADDED_NUMBER_SERIES.has(set.series)) return null;
+  if (!/^\d{1,3}$/.test(card.n)) return null;
+  const total = setPrintedTotal(set);
+  if (!Number.isInteger(total) || total < 1 || total > 999) return null;
+  const printed = `${card.n.padStart(3, "0")}/${String(total).padStart(3, "0")}`;
+  return printed === cardFraction(set, card) ? null : printed;
 }
 
 /**
@@ -265,10 +284,16 @@ export function buildCardView(
   status: CardStatus,
 ): CardView {
   const fraction = cardFraction(set, card);
+  const printedFraction = printedCardFraction(set, card);
   const path = cardPath(set.id, card);
   const fullTitle = fill(m.cardPage.title, { name: card.name, fraction, set: set.name });
   const title = fullTitle.length <= 60 ? fullTitle : fill(m.cardPage.titleShort, { name: card.name, fraction });
   const description = cardMetaDescription(m, set, card, fraction);
+  const imageAlt = fill(m.cardPage.imageAlt, {
+    name: card.name,
+    fraction: printedFraction ?? fraction,
+    set: set.name,
+  });
   const binders = binderLinks(locale, m, set, card);
   const species = speciesLinks(locale, card);
   const statusLine =
@@ -277,6 +302,7 @@ export function buildCardView(
 
   const facts: CardFact[] = [
     { label: m.cardPage.number, value: fraction },
+    ...(printedFraction ? [{ label: m.cardPage.printedAs, value: printedFraction }] : []),
     { label: m.cardPage.set, value: set.name, href: localePath(locale, `/collections/set/${set.id}`) },
     { label: m.cardPage.series, value: set.series, href: localePath(locale, `/collections/series/${seriesSlug(set.series)}`) },
   ];
@@ -319,7 +345,11 @@ export function buildCardView(
         setName: printingSet.name,
         year: releaseYear(printingSet.releaseDate),
         image: cardImageUrl(printing.s, printing.n, "low"),
-        alt: cardImageAlt(m.checklist.cardAlt, named.name, printingSet.name, printing.n),
+        alt: fill(m.cardPage.imageAlt, {
+          name: named.name,
+          fraction: printedCardFraction(printingSet, named) ?? cardFraction(printingSet, named),
+          set: printingSet.name,
+        }),
       },
     ];
   });
@@ -336,6 +366,8 @@ export function buildCardView(
     paragraphs: story.paragraphs,
     faqs: story.faqs,
     fraction,
+    printedFraction,
+    imageAlt,
     status,
     crumbs: [
       { name: m.nav.home, href: localePath(locale, "/") },
@@ -367,19 +399,56 @@ export function metaDescription(paragraph: string): string {
   return `${(space > 140 ? cut.slice(0, space) : cut).trimEnd()}…`;
 }
 
-const DESCRIPTION_LIMIT = 155;
+const DESCRIPTION_LIMIT = 160;
 
-/** One short sentence for the meta description. Name and collector number stay in the first clause. */
+function cardKindWord(m: Messages, card: CatalogCard): string {
+  if (card.k === "p") return m.cardPage.metaPokemon;
+  if (card.k === "t") return m.cardPage.metaTrainer;
+  if (card.k === "e") return m.cardPage.metaEnergy;
+  return m.cardPage.metaOther;
+}
+
+function cardKindPhrase(m: Messages, card: CatalogCard): string {
+  const type = card.ty?.length ? card.ty.join(" & ") : "";
+  const rarity = card.r ?? "";
+  if (type && rarity) return fill(m.cardPage.metaRarityType, { rarity, type });
+  if (type) return fill(m.cardPage.metaTypeOnly, { type });
+  if (rarity) return fill(m.cardPage.metaRarityKind, { rarity, kind: cardKindWord(m, card) });
+  return fill(m.cardPage.metaPlain, { kind: cardKindWord(m, card) });
+}
+
+/**
+ * Snippet for a card page. Year, type, and illustrator are included when the
+ * catalog has them and the sentence still fits. The title and the URL stay
+ * on the unpadded collector number.
+ */
 export function cardMetaDescription(m: Messages, set: CatalogSet, card: CatalogCard, fraction: string): string {
-  const plain = fill(m.cardPage.description, { name: card.name, fraction, set: set.name });
-  const rare = card.r
-    ? fill(m.cardPage.descriptionRare, { name: card.name, fraction, set: set.name, rarity: card.r })
-    : "";
-  if (rare && rare.length <= DESCRIPTION_LIMIT) return rare;
-  if (plain.length <= DESCRIPTION_LIMIT) return plain;
-  const short = fill(m.cardPage.descriptionShort, { name: card.name, fraction });
+  const shown = printedCardFraction(set, card) ?? fraction;
+  const year = releaseYear(set.releaseDate);
+  const lead = (withYear: boolean) =>
+    fill(m.cardPage.metaLead, {
+      name: card.name,
+      fraction: shown,
+      set: set.name,
+      year: withYear && year ? fill(m.cardPage.metaYear, { year }) : "",
+    });
+  const withKind = (withYear: boolean) => fill(m.cardPage.metaKind, { lead: lead(withYear), kind: cardKindPhrase(m, card) });
+  const withArtist = (base: string) =>
+    card.a ? fill(m.cardPage.metaIllustrated, { base, illustrator: card.a }) : base;
+  const withTail = (base: string) => fill(m.cardPage.metaTail, { base });
+  const full = withTail(withArtist(withKind(true)));
+  if (full.length <= DESCRIPTION_LIMIT) return full;
+  const artist = withArtist(withKind(true));
+  if (artist.length <= DESCRIPTION_LIMIT) return artist;
+  const kind = withKind(true);
+  if (kind.length <= DESCRIPTION_LIMIT) return kind;
+  const undated = withArtist(withKind(false));
+  if (undated.length <= DESCRIPTION_LIMIT) return undated;
+  const short = withKind(false);
   if (short.length <= DESCRIPTION_LIMIT) return short;
-  return `${short.slice(0, DESCRIPTION_LIMIT - 1).trimEnd()}…`;
+  const bare = lead(false);
+  if (bare.length <= DESCRIPTION_LIMIT) return bare;
+  return `${bare.slice(0, DESCRIPTION_LIMIT - 1).trimEnd()}…`;
 }
 
 /** Title, description, canonical, robots, and hreflang for one card URL. */
@@ -398,7 +467,7 @@ export function cardPageMetadata(locale: Locale, m: Messages, resolved: Resolved
     ...(photo
       ? {
           image: photo,
-          imageAlt: cardImageAlt(m.checklist.cardAlt, resolved.card.name, resolved.set.name, resolved.card.n),
+          imageAlt: view.imageAlt,
           imageWidth: 600,
           imageHeight: 825,
         }
@@ -407,14 +476,29 @@ export function cardPageMetadata(locale: Locale, m: Messages, resolved: Resolved
 }
 
 export function cardPageGraph(locale: Locale, view: CardView): Graph {
-  return ldGraph([
-    pageNode({
-      kind: "WebPage",
-      locale,
-      path: view.path,
-      name: view.title,
-      description: view.description,
-    }),
-    breadcrumbNode(view.crumbs),
-  ]);
+  const page = pageNode({
+    kind: "WebPage",
+    locale,
+    path: view.path,
+    name: view.title,
+    description: view.description,
+  });
+  const slug = view.path.startsWith("/cards/") ? view.path.slice("/cards/".length) : "";
+  const resolved = resolveCardSlug(slug);
+  const photo =
+    resolved && cardImageKind(resolved.set.id, resolved.card.n) === "tcgdex"
+      ? cardImageUrl(resolved.set.id, resolved.card.n, "high")
+      : null;
+  if (photo) {
+    const image = {
+      "@type": "ImageObject" as const,
+      contentUrl: photo,
+      url: photo,
+      caption: view.imageAlt,
+      creditText: "Image: TCGdex",
+      copyrightNotice: "© Nintendo / Creatures / GAME FREAK",
+    };
+    Object.assign(page, { image, primaryImageOfPage: image });
+  }
+  return ldGraph([page, breadcrumbNode(view.crumbs)]);
 }

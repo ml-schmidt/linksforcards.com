@@ -26,7 +26,7 @@
     "id": "indonesiano"
   },
   "meta": {
-    "homeTitle": "LinksForCards",
+    "homeTitle": "LinksForCards – raccoglitori di carte Pokémon per bambini",
     "homeDescription": "Sono Magnus Schmidt. Raccolgo carte Pokémon dai negozi in Europa e negli Stati Uniti, completo raccoglitori di set e di generazione e li consegno ai bambini. Questa pagina è il registro pubblico.",
     "bindersTitle": "Raccoglitori e Pokédex",
     "bindersDescription": "Le liste dei miei raccoglitori di set e di generazione, con quello che ho già e quello che manca.",
@@ -59,7 +59,21 @@
     "themesDescription": "Liste per un Pokémon, un artista o un tipo di carta. Una barra piena è quello che ho già.",
     "cardsTitle": "Elenco delle carte Pokémon",
     "illustratorsTitle": "Illustratori delle carte",
-    "illustratorTitle": "{name}, illustratore di carte"
+    "illustratorTitle": "{name}, illustratore di carte",
+    "setMetaTitle": "{name}: lista di tutte le {total} carte Pokémon + checklist",
+    "setMetaTitleShort": "{name}: tutte le {total} carte Pokémon",
+    "setMetaTitleTiny": "{name}: {total} carte Pokémon",
+    "setMetaDescription": "Ogni carta del GCC Pokémon {name} ({series}, {year}): tutte le {total} carte in ordine di set, con numeri e immagini, più una checklist stampabile gratuita.",
+    "setMetaDescriptionShort": "GCC Pokémon {name} ({series}, {year}): tutte le {total} carte e una checklist stampabile gratuita.",
+    "setMetaDescriptionTiny": "Pokémon {name} ({year}): tutte le {total} carte e una checklist.",
+    "seriesMetaTitle": "Serie Pokémon {series}: liste carte di tutti i {count} set",
+    "seriesMetaTitleOne": "Serie Pokémon {series}: la lista carte",
+    "seriesMetaTitleShort": "Pokémon {series}: liste di {count} set",
+    "seriesMetaDescription": "Tutti i {count} set di {series} in ordine di uscita, ciascuno con una lista completa e una checklist stampabile gratuita.",
+    "seriesMetaDescriptionOne": "Il set {series}, con una lista completa e una checklist stampabile gratuita.",
+    "seriesMetaDescriptionShort": "{count} set di {series}, ciascuno con lista e checklist stampabile.",
+    "deltaReignMetaTitle": "Delta Reign: lista carte, data e checklist",
+    "deltaReignMetaDescription": "Quello che Pokémon ha pubblicato su Mega Evolution—Delta Reign: le date, e la checklist che resta vuota finché la lista carte non è vera."
   },
   "nav": {
     "primary": "Pagine",
@@ -366,7 +380,22 @@
     "faq": "Domande su questa carta",
     "cost": "Costo",
     "damage": "Danni",
-    "alsoHeld": "Anche nella collezione: {languages}."
+    "alsoHeld": "Anche nella collezione: {languages}.",
+    "metaYear": " ({year})",
+    "metaLead": "{name} {fraction} dal set {set}{year}",
+    "metaKind": "{lead}: {kind}",
+    "metaRarityType": "carta {type} {rarity}",
+    "metaTypeOnly": "carta {type}",
+    "metaRarityKind": "carta {kind} {rarity}",
+    "metaPlain": "carta {kind}",
+    "metaPokemon": "Pokémon",
+    "metaTrainer": "Allenatore",
+    "metaEnergy": "Energia",
+    "metaOther": "altra",
+    "metaIllustrated": "{base}, illustrata da {illustrator}",
+    "metaTail": "{base}. Testo della carta, raccoglitori in cui entra e altre stampe.",
+    "printedAs": "Stampato come",
+    "imageAlt": "{name} {fraction} – carta Pokémon di {set}"
   },
   "cardSearch": {
     "kicker": "Elenco carte",
@@ -463,5 +492,20 @@
     "openTheme": "Apri la pagina del raccoglitore",
     "openGeneration": "Apri la pagina della generazione",
     "footerNote": "Segno la casella quando la carta è nel raccoglitore."
+  },
+  "guideNotes": {
+    "heading": "Dalle guide",
+    "setOrder": "[[I set in ordine|/guides/sets-in-order]] è il modo in cui metto questa lista tra le altre.",
+    "organize": "[[Come sistemo un raccoglitore|/guides/organize-binder]] è la misura di pagina che uso quando le carte sono ordinate.",
+    "bulk": "Una scatola di bulk da ordinare? [[Cosa faccio con il bulk|/guides/bulk-cards]] è il passaggio prima che una carta arrivi in questa lista.",
+    "read": "[[Come leggo una carta|/guides/read-a-card]] mostra dove stanno il numero di collezione e il simbolo del set.",
+    "protect": "[[Come proteggo una carta|/guides/protect-cards]] è la bustina, prima che una carta entri in una tasca.",
+    "fakes": "[[Come riconosco un falso|/guides/spot-fakes]] è il controllo quando una carta non corrisponde all'immagine.",
+    "collecting": "[[Come colleziono nei raccoglitori|/guides/collecting-binders]] è la nota più lunga su un raccoglitore di set e uno di generazione.",
+    "pokedex": "[[Un raccoglitore Pokédex|/guides/pokedex-binder]] tiene una carta per specie, da qualsiasi set.",
+    "gen1": "[[La lista generazione 1|/guides/gen-1-checklist]] sono le 151 specie originali, e non è la stessa lista di un solo set.",
+    "set151": "Cerchi il set del 2023 chiamato [[151|/collections/set/sv3pt5]]? È un'altra lista rispetto alle 151 specie originali.",
+    "sv3pt5": "Questa pagina è il set del 2023 chiamato 151. Le 151 specie originali sono [[la lista generazione 1|/guides/gen-1-checklist]].",
+    "homeGive": "Quando un raccoglitore è pieno, parte. [[Dare via un raccoglitore|/guides/donating-cards]] è questa parte del progetto."
   }
 }

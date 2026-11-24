@@ -35,6 +35,9 @@ export default async function LocaleLayout({
   const { locale } = await readLocale(params);
   return (
     <html lang={htmlLang(locale)} className={`${display.variable} ${sans.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://assets.tcgdex.net" />
+      </head>
       <body>
         <SiteHeader locale={locale} />
         <main id="content" className="wrap">

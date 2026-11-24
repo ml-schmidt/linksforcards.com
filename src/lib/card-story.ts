@@ -3,6 +3,7 @@ import { renderCardStory } from "@/content/card-story";
 import type { CardStory, ComparedPrinting, FieldCompare, SpeciesFact } from "@/content/card-story-types";
 import { artistCardCount, dexesForPrintedName, printingsForDex } from "./card-lookup";
 import { getSet, getSetCards, speciesName, type CatalogCard, type CatalogSet } from "./catalog";
+import { formatEnergyList, separateEnergyWords } from "./energy-text";
 import { fill, formatDay, formatInt } from "./format";
 import { formatDexNumber, generationOf, SPECIES_TOTAL } from "./generations";
 import type { Messages } from "./i18n";
@@ -167,21 +168,21 @@ export function buildCardStory(
     attacks: (card.atk ?? []).map((attack) => ({
       name: attack.n,
       damage: attack.d ?? null,
-      cost: attack.c?.length ? attack.c.join(", ") : null,
-      text: attack.x ?? null,
+      cost: attack.c?.length ? formatEnergyList(attack.c) : null,
+      text: attack.x ? separateEnergyWords(attack.x) : null,
     })),
     abilities: (card.ab ?? []).map((ability) => ({
       name: ability.n,
       type: ability.y ?? null,
-      text: ability.x ?? null,
+      text: ability.x ? separateEnergyWords(ability.x) : null,
     })),
     weaknesses: (card.w ?? []).map(pairLine),
     resistances: (card.rs ?? []).map(pairLine),
     retreat: card.rc ?? null,
     flavor: card.fl ?? null,
     regulation: card.rm ?? null,
-    rules: card.ru ?? [],
-    ancient: card.ag ? { name: card.ag.n, text: card.ag.x } : null,
+    rules: (card.ru ?? []).map((rule) => separateEnergyWords(rule)),
+    ancient: card.ag ? { name: card.ag.n, text: separateEnergyWords(card.ag.x) } : null,
     otherSets: new Set(others.map((printing) => printing.s)).size,
     yearFrom: years[0] ?? null,
     yearTo: years.at(-1) ?? null,

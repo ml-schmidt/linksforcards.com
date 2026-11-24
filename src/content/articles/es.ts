@@ -261,7 +261,7 @@ export function spanishArticles(): ArticleCopy[] {
           id: "the-151",
           heading: "Qué significan las 151",
           paragraphs: [
-            "Las 151 son un tramo del Pokédex, no un solo producto. La [[generación 1|/collections/generation/1]] lista cada especie de ese tramo, con algunos de los sets en los que aparece. Esa página es la lista que uso. No es el mismo objeto que el set Base, que tiene 102 cartas e incluye entrenadores y energías. La gente mezcla esas dos cuentas. Yo las mantengo aparte para que la carpeta tenga el número justo de bolsillos.",
+            "Las 151 son un tramo del Pokédex, no un solo producto. La [[generación 1|/collections/generation/1]] lista cada especie de ese tramo, con algunos de los sets en los que aparece. Esa página es la lista que uso. No es el mismo objeto que el set Base, que tiene 102 cartas e incluye entrenadores y energías. La gente mezcla esas dos cuentas. Yo las mantengo aparte para que la carpeta tenga el número justo de bolsillos. El set de 2023 llamado [[151|/collections/set/sv3pt5]] es otra lista.",
             "[[La nota de la carpeta Pokédex|/guides/pokedex-binder]] es el mismo método para las {species} especies. Esta nota se queda con el primer libro, porque las 151 originales son la carpeta de la que más me preguntan. [[La guía larga|/guides/collecting-binders]] explica por qué esto es una carpeta de generación y no una carpeta de set. Las dos pueden contener un Pikachu. No cuentan lo mismo.",
           ],
         },

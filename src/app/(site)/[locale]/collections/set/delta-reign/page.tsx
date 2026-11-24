@@ -37,14 +37,15 @@ function kindLabel(kind: CardKind, m: Messages): string {
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await readLocale(params);
+  const { locale, m } = await readLocale(params);
   const copy = deltaReignCopy(locale);
   const indexed = cardPageIndexed(locale);
-  return pageMetadata(locale, DELTA_REIGN_PATH, copy.title, copy.description, {
+  return pageMetadata(locale, DELTA_REIGN_PATH, m.meta.deltaReignMetaTitle, m.meta.deltaReignMetaDescription, {
     imageAlt: copy.h1,
     index: indexed,
     hreflang: indexed,
     locales: CARD_INDEX_LOCALES,
+    fitTitle: true,
   });
 }
 

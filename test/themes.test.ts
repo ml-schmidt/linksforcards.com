@@ -3,6 +3,8 @@ import path from "node:path";
 import { describe, expect, it } from "vitest";
 import { themeCopy, themeCopyLocales } from "../src/content/theme-copy";
 import { getSetCards } from "../src/lib/catalog";
+import { fill, formatDay, formatInt } from "../src/lib/format";
+import { clipOnWord } from "../src/lib/snippets";
 import { LOCALES, SPECIES_INDEX_LOCALES } from "../src/lib/locales";
 import { bulkTone, getTheme, getThemes, themeFromCurated, themeIndexed, themeHreflangLocales } from "../src/lib/themes";
 import { loadCatalogCards, themeRule } from "../scripts/build-themes.mjs";
@@ -292,6 +294,48 @@ describe("themed binders", () => {
         expect(text).toContain("{total}");
         expect(text).not.toMatch(/[$€£]/);
         for (const pattern of plural[voice] ?? []) expect(text, `${locale}/${theme.slug}`).not.toMatch(pattern);
+      }
+    }
+  });
+
+  it("does not repeat the title in the meta description, and stays within 160 characters", () => {
+    const eevee = getTheme("eeveelutions");
+    const copy = themeCopy("us", "eeveelutions");
+    if (!eevee || !copy) throw new Error("missing eeveelutions");
+    const filled = clipOnWord(
+      fill(copy.description, {
+        total: formatInt(eevee.total, "us"),
+        sets: formatInt(eevee.setCount, "us"),
+        first: formatDay(eevee.first, "us"),
+        last: formatDay(eevee.last, "us"),
+      }),
+      160,
+    );
+    expect(filled.startsWith("Eevee and the eight evolutions share this binder.")).toBe(true);
+    expect(filled).not.toContain(copy.title);
+    expect(filled.length).toBeLessThanOrEqual(160);
+    for (const locale of LOCALES) {
+      for (const theme of getThemes()) {
+        const item = themeCopy(locale, theme.slug);
+        if (!item) throw new Error(`missing ${locale}/${theme.slug}`);
+        const description = clipOnWord(
+          fill(item.description, {
+            total: formatInt(theme.total, locale),
+            sets: formatInt(theme.setCount, locale),
+            first: formatDay(theme.first, locale),
+            last: formatDay(theme.last, locale),
+          }),
+          160,
+        );
+        const raw = fill(item.description, {
+          total: formatInt(theme.total, locale),
+          sets: formatInt(theme.setCount, locale),
+          first: formatDay(theme.first, locale),
+          last: formatDay(theme.last, locale),
+        });
+        expect(description.length, `${locale}/${theme.slug}`).toBeLessThanOrEqual(160);
+        expect(description.includes(item.title), `${locale}/${theme.slug}`).toBe(false);
+        expect(raw, `${locale}/${theme.slug}`).toMatch(/[.!?]/);
       }
     }
   });

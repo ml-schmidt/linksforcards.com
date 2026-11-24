@@ -222,7 +222,7 @@ export function CardSearch({
       {failed && !payload ? <p className="muted">{labels.fallback}</p> : null}
       {hits.length === 0 ? <p>{labels.empty}</p> : null}
       <ul className="card-results" aria-labelledby="card-results">
-        {hits.map((hit) => (
+        {hits.map((hit, index) => (
           <li key={hit.href}>
             <a href={hit.href}>
               <span className="card-shot">
@@ -230,6 +230,8 @@ export function CardSearch({
                   src={hit.image}
                   alt={fill(labels.cardAlt, { name: hit.name, set: hit.setName, number: hit.number })}
                   quality="low"
+                  eager={Boolean(hit.image) && index < 6}
+                  priority={Boolean(hit.image) && index === 0}
                 />
               </span>
               <span className="printing-name">{hit.name}</span>

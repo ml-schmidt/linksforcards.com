@@ -261,7 +261,7 @@ export function italianArticles(): ArticleCopy[] {
           id: "the-151",
           heading: "Che cosa vogliono dire i 151",
           paragraphs: [
-            "I 151 sono un tratto del Pokédex, non un solo prodotto. La [[generazione 1|/collections/generation/1]] elenca ogni specie di quel tratto, con alcuni dei set in cui ciascuna compare. Quella pagina è la lista che uso. Non è lo stesso oggetto del set Base, che conta 102 carte e comprende allenatori ed energie. La gente mescola quei due conteggi. Li tengo separati perché il raccoglitore abbia il numero giusto di tasche.",
+            "I 151 sono un tratto del Pokédex, non un solo prodotto. La [[generazione 1|/collections/generation/1]] elenca ogni specie di quel tratto, con alcuni dei set in cui ciascuna compare. Quella pagina è la lista che uso. Non è lo stesso oggetto del set Base, che conta 102 carte e comprende allenatori ed energie. La gente mescola quei due conteggi. Li tengo separati perché il raccoglitore abbia il numero giusto di tasche. Il set del 2023 chiamato [[151|/collections/set/sv3pt5]] è un'altra lista.",
             "[[La nota sul raccoglitore Pokédex|/guides/pokedex-binder]] è lo stesso metodo per tutte le {species} specie. Questa nota resta con il primo libro, perché i 151 originali sono il raccoglitore di cui mi chiedono più spesso. [[La guida lunga|/guides/collecting-binders]] spiega perché si tratta di un raccoglitore di generazione e non di un raccoglitore di set. Entrambi possono contenere un Pikachu. Non contano la stessa cosa.",
           ],
         },

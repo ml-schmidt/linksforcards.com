@@ -102,6 +102,7 @@ export const ARTICLE_LINKS: Record<ArticleSlug, readonly string[]> = {
     "/guides/sets-in-order",
     "/collections/generation/1",
     "/collections/set/base1",
+    "/collections/set/sv3pt5",
     "/collections/series/base",
     "/pokedex/6",
     "/pokedex/25",

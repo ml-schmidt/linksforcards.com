@@ -8,6 +8,7 @@ import { ProgressBar } from "@/components/site/progress-bar";
 import { RelatedLinks } from "@/components/site/related-links";
 import { SiteLinks } from "@/components/site/site-links";
 import { getSetCards, setsBySeries } from "@/lib/catalog";
+import { seriesSearchDescription, seriesSearchTitle } from "@/lib/collection-meta";
 import { DELTA_REIGN_PATH, DELTA_REIGN_SERIES } from "@/lib/delta-reign";
 import { fill, formatInt } from "@/lib/format";
 import { readLocale } from "@/lib/i18n";
@@ -33,8 +34,9 @@ export async function generateMetadata({
   return pageMetadata(
     locale,
     `/collections/series/${slug}`,
-    fill(m.meta.seriesTitle, { series: group.series }),
-    fill(m.meta.seriesDescription, { series: group.series, count: group.sets.length }),
+    seriesSearchTitle(m, locale, group.series, group.sets.length),
+    seriesSearchDescription(m, locale, group.series, group.sets.length),
+    { fitTitle: true },
   );
 }
 
@@ -67,7 +69,7 @@ export default async function SeriesPage({ params }: { params: Promise<{ locale:
     locale,
     path,
     name: title,
-    description: fill(m.meta.seriesDescription, { series: group.series, count: group.sets.length }),
+    description: seriesSearchDescription(m, locale, group.series, group.sets.length),
   }) as CollectionPage;
   Object.assign(page, { mainEntity: { "@id": String(list["@id"]) } });
   const graph = ldGraph([page, list, breadcrumbNode(crumbs)]);

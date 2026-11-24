@@ -26,7 +26,7 @@
     "id": "indonezyjski"
   },
   "meta": {
-    "homeTitle": "LinksForCards",
+    "homeTitle": "LinksForCards – segregatory kart Pokémon dla dzieci",
     "homeDescription": "Jestem Magnus Schmidt. Zbieram karty Pokémon ze sklepów w Europie i w Stanach Zjednoczonych, kompletuję segregatory setów i generacji i oddaję je dzieciom. Ta strona jest publicznym spisem.",
     "bindersTitle": "Segregatory i Pokédex",
     "bindersDescription": "Listy segregatorów setów i generacji: co już mam i czego jeszcze brakuje.",
@@ -59,7 +59,21 @@
     "themesDescription": "Listy dla jednego Pokémona, jednego artysty albo jednego rodzaju karty. Wypełniony pasek to to, co już mam.",
     "cardsTitle": "Lista kart Pokémon",
     "illustratorsTitle": "Ilustratorzy kart",
-    "illustratorTitle": "{name}, ilustrator kart"
+    "illustratorTitle": "{name}, ilustrator kart",
+    "setMetaTitle": "{name}: wszystkie {total} karty Pokémon + lista kontrolna",
+    "setMetaTitleShort": "{name}: wszystkie {total} karty Pokémon",
+    "setMetaTitleTiny": "{name}: {total} kart Pokémon",
+    "setMetaDescription": "Wszystkie karty Pokémon TCG {name} ({series}, {year}): wszystkie {total} kart w kolejności setu, z numerami i obrazkami, plus darmowa lista kontrolna do druku.",
+    "setMetaDescriptionShort": "Pokémon TCG {name} ({series}, {year}): wszystkie {total} kart i darmowa lista kontrolna do druku.",
+    "setMetaDescriptionTiny": "Pokémon {name} ({year}): wszystkie {total} kart i lista kontrolna.",
+    "seriesMetaTitle": "Seria Pokémon {series}: listy kart wszystkich {count} setów",
+    "seriesMetaTitleOne": "Seria Pokémon {series}: lista kart",
+    "seriesMetaTitleShort": "Pokémon {series}: listy {count} setów",
+    "seriesMetaDescription": "Wszystkie {count} setów serii {series} w kolejności wydań, każdy z pełną listą kart i darmową listą kontrolną do druku.",
+    "seriesMetaDescriptionOne": "Set {series}, z pełną listą kart i darmową listą kontrolną do druku.",
+    "seriesMetaDescriptionShort": "{count} setów serii {series}, każdy z listą kart i listą kontrolną.",
+    "deltaReignMetaTitle": "Delta Reign: lista kart, data i lista kontrolna",
+    "deltaReignMetaDescription": "To, co Pokémon opublikowało o Mega Evolution—Delta Reign: daty i lista kontrolna, która zostaje pusta, dopóki lista kart nie jest prawdziwa."
   },
   "nav": {
     "primary": "Strony",
@@ -366,7 +380,22 @@
     "faq": "Pytania o tę kartę",
     "cost": "Koszt",
     "damage": "Obrażenia",
-    "alsoHeld": "Także w kolekcji: {languages}."
+    "alsoHeld": "Także w kolekcji: {languages}.",
+    "metaYear": " ({year})",
+    "metaLead": "{name} {fraction} z setu {set}{year}",
+    "metaKind": "{lead}: {kind}",
+    "metaRarityType": "karta {type} {rarity}",
+    "metaTypeOnly": "karta {type}",
+    "metaRarityKind": "karta {kind} {rarity}",
+    "metaPlain": "karta {kind}",
+    "metaPokemon": "Pokémon",
+    "metaTrainer": "Trener",
+    "metaEnergy": "Energia",
+    "metaOther": "inna",
+    "metaIllustrated": "{base}, ilustracja: {illustrator}",
+    "metaTail": "{base}. Tekst karty, segregatory, do których pasuje, i inne druki.",
+    "printedAs": "Nadruk",
+    "imageAlt": "{name} {fraction} – karta Pokémon z {set}"
   },
   "cardSearch": {
     "kicker": "Lista kart",
@@ -463,5 +492,20 @@
     "openTheme": "Otwórz stronę segregatora",
     "openGeneration": "Otwórz stronę generacji",
     "footerNote": "Ptaszek, kiedy karta jest w segregatorze."
+  },
+  "guideNotes": {
+    "heading": "Z poradników",
+    "setOrder": "[[Sety po kolei|/guides/sets-in-order]] to sposób, w jaki układam tę listę wśród pozostałych.",
+    "organize": "[[Jak układam segregator|/guides/organize-binder]] to rozmiar strony, którego używam, gdy karty są już posortowane.",
+    "bulk": "Pudełko bulk do sortowania? [[Co robię z bulk|/guides/bulk-cards]] to przejście, zanim karta trafi na tę listę.",
+    "read": "[[Jak czytam kartę|/guides/read-a-card]] pokazuje, gdzie są numer kolekcjonerski i symbol setu.",
+    "protect": "[[Jak chronię kartę|/guides/protect-cards]] to koszulka, zanim karta wejdzie do kieszonki.",
+    "fakes": "[[Jak rozpoznaję falsyfikat|/guides/spot-fakes]] to sprawdzenie, gdy karta nie pasuje do obrazka.",
+    "collecting": "[[Jak zbieram w segregatorach|/guides/collecting-binders]] to dłuższa notatka o segregatorze setu i segregatorze generacji.",
+    "pokedex": "[[Segregator Pokédexa|/guides/pokedex-binder]] trzyma jedną kartę każdego gatunku, z dowolnego setu.",
+    "gen1": "[[Lista kontrolna generacji 1|/guides/gen-1-checklist]] to pierwsze 151 gatunków i nie jest to ta sama lista co jeden set.",
+    "set151": "Szukasz setu z 2023 roku o nazwie [[151|/collections/set/sv3pt5]]? To inna lista niż pierwsze 151 gatunków.",
+    "sv3pt5": "Ta strona to set z 2023 roku o nazwie 151. Pierwsze 151 gatunków jest w [[liście kontrolnej generacji 1|/guides/gen-1-checklist]].",
+    "homeGive": "Gdy segregator jest pełny, odchodzi. [[Oddanie segregatora|/guides/donating-cards]] to ta część projektu."
   }
 }

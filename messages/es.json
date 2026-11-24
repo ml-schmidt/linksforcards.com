@@ -26,7 +26,7 @@
     "id": "indonesio"
   },
   "meta": {
-    "homeTitle": "LinksForCards",
+    "homeTitle": "LinksForCards – carpetas de cartas Pokémon para niños",
     "homeDescription": "Soy Magnus Schmidt. Reúno cartas Pokémon de tiendas de Europa y de Estados Unidos, completo carpetas de expansión y de generación, y las entrego a niños. Esta página es el registro público.",
     "bindersTitle": "Carpetas y Pokédex",
     "bindersDescription": "Las listas de mis carpetas de expansión y de generación, con lo que ya tengo y lo que todavía falta.",
@@ -59,7 +59,21 @@
     "themesDescription": "Listas para un Pokémon, un artista o un tipo de carta. Una barra llena es lo que ya tengo.",
     "cardsTitle": "Lista de cartas Pokémon",
     "illustratorsTitle": "Ilustradores de cartas",
-    "illustratorTitle": "{name}, ilustrador de cartas"
+    "illustratorTitle": "{name}, ilustrador de cartas",
+    "setMetaTitle": "{name}: lista de las {total} cartas Pokémon + checklist",
+    "setMetaTitleShort": "{name}: las {total} cartas Pokémon",
+    "setMetaTitleTiny": "{name}: {total} cartas Pokémon",
+    "setMetaDescription": "Todas las cartas del JCC Pokémon {name} ({series}, {year}): las {total} cartas en orden de set, con números e imágenes, y una checklist imprimible gratis.",
+    "setMetaDescriptionShort": "JCC Pokémon {name} ({series}, {year}): las {total} cartas y una checklist imprimible gratis.",
+    "setMetaDescriptionTiny": "Pokémon {name} ({year}): las {total} cartas y una checklist.",
+    "seriesMetaTitle": "Serie Pokémon {series}: listas de cartas de los {count} sets",
+    "seriesMetaTitleOne": "Serie Pokémon {series}: la lista de cartas",
+    "seriesMetaTitleShort": "Pokémon {series}: listas de {count} sets",
+    "seriesMetaDescription": "Los {count} sets de {series} en orden de salida, cada uno con una lista completa y una checklist imprimible gratis.",
+    "seriesMetaDescriptionOne": "El set {series}, con una lista completa y una checklist imprimible gratis.",
+    "seriesMetaDescriptionShort": "{count} sets de {series}, cada uno con lista y checklist imprimible.",
+    "deltaReignMetaTitle": "Delta Reign: lista de cartas, fecha y checklist",
+    "deltaReignMetaDescription": "Lo que Pokémon ha publicado sobre Mega Evolution—Delta Reign: las fechas, y la checklist que queda vacía hasta que la lista de cartas sea real."
   },
   "nav": {
     "primary": "Páginas",
@@ -366,7 +380,22 @@
     "faq": "Preguntas sobre esta carta",
     "cost": "Coste",
     "damage": "Daño",
-    "alsoHeld": "También en la colección: {languages}."
+    "alsoHeld": "También en la colección: {languages}.",
+    "metaYear": " ({year})",
+    "metaLead": "{name} {fraction} del set {set}{year}",
+    "metaKind": "{lead}: {kind}",
+    "metaRarityType": "carta {type} {rarity}",
+    "metaTypeOnly": "carta {type}",
+    "metaRarityKind": "carta {kind} {rarity}",
+    "metaPlain": "carta {kind}",
+    "metaPokemon": "Pokémon",
+    "metaTrainer": "Entrenador",
+    "metaEnergy": "Energía",
+    "metaOther": "otra",
+    "metaIllustrated": "{base}, ilustrada por {illustrator}",
+    "metaTail": "{base}. Texto de la carta, carpetas en las que entra y otras impresiones.",
+    "printedAs": "Impreso como",
+    "imageAlt": "{name} {fraction} – carta Pokémon de {set}"
   },
   "cardSearch": {
     "kicker": "Lista de cartas",
@@ -463,5 +492,20 @@
     "openTheme": "Abrir la página del álbum",
     "openGeneration": "Abrir la página de la generación",
     "footerNote": "Marco la casilla cuando la carta está en el álbum."
+  },
+  "guideNotes": {
+    "heading": "De las guías",
+    "setOrder": "[[Los sets en orden|/guides/sets-in-order]] es cómo coloco esta lista entre las demás.",
+    "organize": "[[Cómo organizo una carpeta|/guides/organize-binder]] es el tamaño de página que uso cuando las cartas ya están ordenadas.",
+    "bulk": "¿Una caja de bulk por ordenar? [[Qué hago con el bulk|/guides/bulk-cards]] es la pasada antes de que una carta llegue a esta lista.",
+    "read": "[[Cómo leo una carta|/guides/read-a-card]] muestra dónde están el número de colección y el símbolo del set.",
+    "protect": "[[Cómo protejo una carta|/guides/protect-cards]] es la funda, antes de que una carta entre en un bolsillo.",
+    "fakes": "[[Cómo detecto una falsificación|/guides/spot-fakes]] es la revisión cuando una carta no coincide con la imagen.",
+    "collecting": "[[Cómo colecciono en carpetas|/guides/collecting-binders]] es la nota más larga sobre una carpeta de set y una de generación.",
+    "pokedex": "[[Una carpeta Pokédex|/guides/pokedex-binder]] guarda una carta de cada especie, de cualquier set.",
+    "gen1": "[[La lista de la generación 1|/guides/gen-1-checklist]] son las 151 especies originales, y no es la misma lista que un solo set.",
+    "set151": "¿Buscas la expansión de 2023 llamada [[151|/collections/set/sv3pt5]]? Es otra lista, distinta de las 151 especies originales.",
+    "sv3pt5": "Esta página es el set de 2023 llamado 151. Las 151 especies originales están en [[la lista de la generación 1|/guides/gen-1-checklist]].",
+    "homeGive": "Cuando una carpeta está llena, se va. [[Entregar una carpeta|/guides/donating-cards]] es esa parte del proyecto."
   }
 }

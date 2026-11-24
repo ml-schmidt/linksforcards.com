@@ -261,7 +261,7 @@ export function norwegianArticles(): ArticleCopy[] {
           id: "the-151",
           heading: "Hva de 151 betyr",
           paragraphs: [
-            "De 151 er et Pokédex-intervall, ikke ett enkelt produkt. [[Generasjon 1|/collections/generation/1]] lister hver art i det intervallet, med noen av settene der hver av dem forekommer. Den siden er sjekklisten jeg bruker. Den er ikke det samme som Base, som er 102 kort og inneholder trenere og energi. Folk blander de to tallene. Jeg holder dem fra hverandre så permen får riktig antall lommer.",
+            "De 151 er et Pokédex-intervall, ikke ett enkelt produkt. [[Generasjon 1|/collections/generation/1]] lister hver art i det intervallet, med noen av settene der hver av dem forekommer. Den siden er sjekklisten jeg bruker. Den er ikke det samme som Base, som er 102 kort og inneholder trenere og energi. Folk blander de to tallene. Jeg holder dem fra hverandre så permen får riktig antall lommer. Leter du etter 2023-settet som heter [[151|/collections/set/sv3pt5]]? Det er en annen liste.",
             "[[Notatet om Pokédex-permen|/guides/pokedex-binder]] er samme metode for alle {species} arter. Dette notatet blir ved den første boken, for de opprinnelige 151 er permen jeg oftest får spørsmål om. [[Den lange guiden|/guides/collecting-binders]] forklarer hvorfor dette er en generasjonsperm og ikke en settperm. En produktboks med «151» på lokket er ikke automatisk denne sjekklisten.",
           ],
         },
